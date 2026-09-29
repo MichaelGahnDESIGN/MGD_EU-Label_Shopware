@@ -12,13 +12,13 @@ Die Bildbestandteile, Farben, QR-Codes und Texte des amtlichen Motivs sind keine
 
 ## Sprache und Text
 
-`language=auto` verwendet in deutschen Sprachkontexten Deutsch, sonst Englisch. `de` und `en` erzwingen die jeweilige Originaldatei. Für andere Sprachmärkte genügt der englische Rückfall nicht automatisch; ergänze deren offizielle Dateien und Sprachauswahl vor der Freigabe.
+`language=de` ist der Standard, unabhängig von der Sprache des Verkaufskanals. Der bisherige Wert `auto` bleibt aus Kompatibilitätsgründen auswählbar, zeigt aber ebenfalls Deutsch. Nur `language=en` zeigt explizit die englische Originaldatei. Für andere Sprachmärkte genügt dies nicht automatisch; ergänze deren offizielle Dateien und Sprachauswahl vor der Freigabe.
 
 `linkText` leer lassen, wenn der lokalisierte Standardtext gewünscht ist. Ein eigener Text soll den Inhalt verständlich benennen, nicht nur „Mehr“ oder „Info“. Der Wert ist Klartext; HTML oder Skripte gehören nicht hinein.
 
 ## Updates
 
-`automaticUpdates` ist zunächst aus. Nach bewusster Aktivierung prüft ein Scheduled Task Releases und kann Dateien vorbereiten. Das ist eine betrieblich relevante Einstellung: Schreibrechte, Queue, Wartung und Sicherungen vorher prüfen. Das native Shopware-Update muss anschließend separat ausgeführt werden.
+`automaticUpdates` ist zunächst aus. Nach bewusster Aktivierung prüft ein Scheduled Task ungefähr stündlich Releases und kann Dateien vorbereiten. Das ist eine betrieblich relevante Einstellung: Schreibrechte, Queue, Wartung und Sicherungen vorher prüfen. Das native Shopware-Update muss anschließend separat ausgeführt werden.
 
 Diese Betriebseinstellung ausdrücklich unter **„Alle Verkaufskanäle“** setzen. Der Scheduled Task liest den globalen Wert; ein ausschließlich kanalspezifischer Override startet keine automatische Prüfung. Ein Plugin-Dateiupdate betrifft die gemeinsame Installation.
 

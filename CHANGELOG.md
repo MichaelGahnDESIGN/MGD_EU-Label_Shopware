@@ -1,5 +1,12 @@
 # Änderungen
 
+## 1.1.3 – deutsche Standardsprache und kürzerer Update-Check
+
+- Die amtliche deutsche Grafik ist Standard, auch bei englischem Verkaufskanal; Englisch erscheint nur bei expliziter Auswahl.
+- Bisher gespeicherte `auto`-Werte bleiben funktionsfähig und zeigen jetzt Deutsch.
+- Optionale GitHub-Release-Prüfung von sechs Stunden auf eine Stunde verkürzt; ein Release löst ohne Polling oder manuelle Admin-Aktion keinen sofortigen Updatehinweis aus.
+- Keine geänderten Shopware- oder PHP-Anforderungen.
+
 ## 1.1.2 – Schließen über den Hintergrund
 
 - Klick oder Tippen auf den abgedunkelten Bereich außerhalb der Lightbox schließt sie.

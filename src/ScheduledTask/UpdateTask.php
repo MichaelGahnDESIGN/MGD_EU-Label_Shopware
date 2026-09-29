@@ -8,5 +8,7 @@ use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTask;
 final class UpdateTask extends ScheduledTask
 {
     public static function getTaskName(): string { return 'mgd_eu_label.update_check'; }
-    public static function getDefaultInterval(): int { return 21600; }
+    // Das Intervall ist nur ein Prüfrhythmus bei aktivierter Automatik.
+    // Manuelle Checks bleiben jederzeit über die geschützte Admin-API möglich.
+    public static function getDefaultInterval(): int { return 3600; }
 }

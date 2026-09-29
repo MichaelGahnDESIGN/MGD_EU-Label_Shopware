@@ -8,10 +8,10 @@ final class NoticeConfig
     /** @param array<string, mixed> $values @return array<string, mixed> */
     public function normalize(array $values, string $locale): array
     {
-        $language = $values['language'] ?? 'auto';
-        if (!in_array($language, ['de', 'en'], true)) {
-            $language = str_starts_with(strtolower($locale), 'de') ? 'de' : 'en';
-        }
+        // Die EU-Grafik bleibt auch in anderssprachigen Verkaufskanälen deutsch.
+        // Englisch erscheint ausschließlich nach der ausdrücklichen Auswahl „en“.
+        // Der frühere Wert „auto“ bleibt für bestehende Installationen lesbar.
+        $language = ($values['language'] ?? null) === 'en' ? 'en' : 'de';
         $result = ['language' => $language];
         foreach (['enabled' => true, 'footerLink' => true, 'headerLink' => false, 'checkoutLink' => false, 'inlineNotice' => false] as $key => $default) {
             $result[$key] = filter_var($values[$key] ?? $default, FILTER_VALIDATE_BOOL);

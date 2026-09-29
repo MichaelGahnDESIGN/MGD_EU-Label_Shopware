@@ -2,7 +2,7 @@
 
 ## Quelle und Ablauf
 
-Vertraute Quelle: `MichaelGahnDESIGN/MGD_EU-Label_Shopware`. Paketname: `MgdEuLabel.zip`. Automatische Prüfung ist standardmäßig aus. Bei Aktivierung läuft ein Scheduled Task ungefähr alle sechs Stunden, sofern Shopware Tasks und Queue verarbeitet.
+Vertraute Quelle: `MichaelGahnDESIGN/MGD_EU-Label_Shopware`. Paketname: `MgdEuLabel.zip`. Automatische Prüfung ist standardmäßig aus. Bei Aktivierung läuft ein Scheduled Task ungefähr stündlich, sofern Shopware Tasks und Queue verarbeitet. Ein GitHub-Release löst ohne Webhook keinen sofortigen Push an Shopware aus; der Task oder die manuelle Admin-Aktion muss es abfragen. Nach dem Update auf 1.1.3 den registrierten Task-Intervallwert kontrollieren, falls die ältere Sechs-Stunden-Registrierung bestehen bleibt.
 
 1. Stabiles Release über GitHubs API lesen.
 2. Versionsnummer mit der lokal installierten Paketversion vergleichen.

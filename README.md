@@ -31,7 +31,7 @@ Verwende das Release-Asset **MgdEuLabel.zip**, nicht GitHubs automatisch erzeugt
 - Optionale Links im Kopfbereich und Checkout sowie direkt sichtbarer Hinweis unterhalb des Footers.
 - Eigene Linkbeschriftung; das offizielle Motiv selbst ist nicht bearbeitbar.
 - Einstellungen pro Verkaufskanal in Shopwares normaler Plugin-Konfiguration.
-- Automatische Sprachauswahl zwischen Deutsch und Englisch oder feste Sprache.
+- Deutsche Standardgrafik; Englisch nur nach ausdrücklicher Auswahl.
 - Tastaturbedienung, Escape, Fokus-Rückgabe und funktionierender Link ohne JavaScript.
 - Klickbarer Informationslink als Alternative zum QR-Code.
 - GitHub-Release-Prüfung und kontrollierte Paketvorbereitung; das eigentliche Update bleibt bei Shopware.
@@ -98,11 +98,11 @@ Werte liegen unter `MgdEuLabel.config.*`. Die Verkaufskanal-Vererbung folgt Shop
 | `headerLink` | Zusätzlicher Link im Kopfbereich | aus |
 | `checkoutLink` | Zusätzlicher Link im Checkout | aus |
 | `inlineNotice` | Vollständiges Motiv unterhalb des Footers | aus |
-| `language` | `auto`, `de` oder `en` | auto |
+| `language` | `de` (Standard), `en` (explizit), bisheriges `auto` bleibt deutsch | de |
 | `linkText` | Eigene Beschriftung, leer für Übersetzung | leer |
 | `automaticUpdates` | Regelmäßige GitHub-Prüfung und Paketvorbereitung | aus |
 
-Bei `auto` erhalten deutsche Sprachkontexte die deutsche Originaldatei. Andere Kontexte fallen auf Englisch zurück. **Das ersetzt nicht die erforderliche Landessprache.** Vor Freigabe weiterer Sprachmärkte müssen deren offizielle Motive ergänzt werden.
+Deutsch bleibt auch in anderssprachigen Verkaufskanälen Standard. Ein vorhandener alter Wert `auto` verhält sich ab 1.1.3 ebenfalls deutsch. Nur `en` zeigt die englische Originaldatei. **Das ersetzt nicht die erforderliche Landessprache.** Vor Freigabe weiterer Sprachmärkte müssen deren offizielle Motive ergänzt werden.
 
 Anzeigeorte nach dem Speichern im Shop prüfen. Proxy-/CDN-/Shopware-Caches können ältere Seiten ausliefern. Die Lightbox öffnet sich nicht ungefragt und blockiert keinen Einkauf.
 
@@ -110,7 +110,7 @@ Anzeigeorte nach dem Speichern im Shop prüfen. Proxy-/CDN-/Shopware-Caches kön
 
 Die feste Updatequelle ist dieses öffentliche Repository. Automatische Dateiveränderungen bleiben zunächst aus und müssen bewusst aktiviert werden.
 
-Bei aktivierter Prüfung fragt ein Scheduled Task ungefähr alle sechs Stunden ein stabiles Release ab. Ein neueres Paket wird nur nach Prüfung von Metadaten, Prüfsumme, Plugin-Identität und ZIP-Struktur vorbereitet. Shopwares Plugin-Liste wird aktualisiert; das Backend bietet dann das native Plugin-Update an. Download ersetzt keine Lifecycle-Schritte oder Migrationen.
+Bei aktivierter Prüfung fragt ein Scheduled Task ungefähr stündlich ein stabiles Release ab. Ein neueres Paket wird nur nach Prüfung von Metadaten, Prüfsumme, Plugin-Identität und ZIP-Struktur vorbereitet. Shopwares Plugin-Liste wird aktualisiert; das Backend bietet dann das native Plugin-Update an. Download ersetzt keine Lifecycle-Schritte oder Migrationen.
 
 Zusätzlich existiert eine authentifizierte Admin-API-Aktion:
 

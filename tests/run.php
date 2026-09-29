@@ -46,7 +46,9 @@ $tests['Konfiguration: sichere Standardwerte und sprachliche Rückfälle'] = sta
     $de = $config->normalize([], 'de-DE');
     check($de['enabled'] && $de['footerLink'] && !$de['headerLink'] && !$de['checkoutLink'] && !$de['inlineNotice'], 'Anzeige-Standardwerte');
     check($de['language'] === 'de' && $de['linkText'] === 'Gesetzliche Gewährleistung', 'Deutsche Sprache');
-    check($config->normalize([], 'fr-FR')['language'] === 'en', 'Unbekannte Sprache erhält EN');
+    check($config->normalize([], 'fr-FR')['language'] === 'de', 'Unbekannte Sprache erhält DE');
+    check($config->normalize(['language' => 'auto'], 'en-US')['language'] === 'de', 'Bisheriger Auto-Wert erhält DE');
+    check($config->normalize(['language' => 'en'], 'de-DE')['language'] === 'en', 'EN nur nach ausdrücklicher Auswahl');
     check($config->normalize(['language' => 'de', 'enabled' => 'false'], 'en-US')['enabled'] === false, 'Text false darf nicht aktivieren');
     check($config->normalize(['language' => 'bad', 'linkText' => '  Test  '], 'en-US')['linkText'] === 'Test', 'Text normalisiert');
 };
@@ -158,7 +160,7 @@ $tests['Download: HTTPS-Hostgrenze, Digest und vollständige Größe'] = static 
     } finally { unlink($file); }
 };
 
-$tests['Integration: feste Adminroute, Standard aus und sechs Stunden'] = static function (): void {
+$tests['Integration: feste Adminroute, Standard aus und stündlicher Check'] = static function (): void {
     $base = __DIR__ . '/../src/';
     check(is_file($base . 'Controller/UpdateController.php'), 'Manuelle Adminroute fehlt');
     $controller = file_get_contents($base . 'Controller/UpdateController.php');
@@ -166,7 +168,7 @@ $tests['Integration: feste Adminroute, Standard aus und sechs Stunden'] = static
     $config = simplexml_load_file($base . 'Resources/config/config.xml');
     $auto = $config->xpath('//input-field[name="automaticUpdates"]/defaultValue');
     check((string) $auto[0] === 'false', 'Automatik muss standardmäßig aus sein');
-    check(str_contains(file_get_contents($base . 'ScheduledTask/UpdateTask.php'), '21600'), 'Sechs-Stunden-Intervall');
+    check(str_contains(file_get_contents($base . 'ScheduledTask/UpdateTask.php'), '3600'), 'Stündliches Prüfintervall');
 };
 
 $tests['Release-Paket: feste Root, Allowlist und reproduzierbare Integritätsdatei'] = static function (): void {
