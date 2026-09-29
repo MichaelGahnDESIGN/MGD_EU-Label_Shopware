@@ -28,6 +28,8 @@ Existiert ein höheres stabiles Release mit exakt `MgdEuLabel.zip`? Ist automati
 
 Ablehnung bei falscher Klasse, Version, Pfad, Symlink oder Größe ist eine Sicherheitsfunktion. Nicht Prüfungen abschalten. Paket aus dem offiziellen Release erneut laden bzw. einen korrekt gebauten Maintainer-Release erstellen.
 
+Sind die Composer-`require`-Deklarationen gegenüber der installierten Version geändert, verweigert die erste Ausbaustufe die automatische Dateivorbereitung. Plattformanforderungen kontrolliert prüfen und die neue Version manuell über Shopwares Installation/Deployment einspielen. Nicht nur die Versionsnummer oder Anforderungen umschreiben, um die Prüfung zu umgehen.
+
 ## Supportangaben
 
 Plugin-/Shopware-/PHP-Version, Theme, Verkaufskanal-Sprache, Zeitpunkt, anonymisierte Fehlermeldung und reproduzierbare Schritte nennen. Keine Zugangsdaten, Kundendaten oder Session-Tokens versenden.

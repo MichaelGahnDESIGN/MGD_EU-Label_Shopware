@@ -128,6 +128,7 @@ Vor Updates sichern, Wartungsbedarf klären, natives Update ausführen, Cache/As
 - Feste HTTPS-Quelle, keine frei eingebbaren Download-URLs.
 - Größenlimit und SHA-256-Abgleich des GitHub-Asset-Digests.
 - Prüfung von Archivpfaden, Symlinks, Plugin-Klasse und Version.
+- Geänderte PHP-, Shopware- oder andere Composer-Abhängigkeitsdeklarationen werden vor dem Dateiaustausch abgelehnt; solche Versionswechsel brauchen eine manuelle Installation mit Shopwares Anforderungsprüfung.
 - Private Arbeitsverzeichnisse, Prozesssperre und Rückfall bei Austauschfehlern.
 - Keine GitHub-Abfrage im normalen Storefront-Aufruf; keine Shopinhalte in Updateanfragen.
 

@@ -22,6 +22,8 @@ Nur geprüfte Änderungen nach `main` übernehmen. Release-Workflow anhand der t
 
 „Push erfolgreich“ bedeutet nicht „Release erfolgreich“. Actions-Status, Assetnamen, Download und Paketinhalt separat prüfen. Source-Code-Archive sind nicht die Updatequelle.
 
+Geänderte Composer-`require`-Deklarationen brauchen einen gesonderten Plattform-/Installationshinweis im Release. Die erste Updater-Version bereitet solche Pakete nicht automatisch vor; das ist eine Fail-Closed-Sicherheitsgrenze, kein Grund, erforderliche Abhängigkeiten aus dem Manifest zu entfernen.
+
 ## Wiki
 
 `docs/wiki/` ist die versionierte Quelle. Dieselben Seiten in das GitHub-Wiki übertragen; dort `.md`-Dateiendungen in internen Seitenlinks entfernen. Änderungen an Konfiguration oder Updateverhalten gleichzeitig im Handbuch erklären. Für historische Versionen auf die taggebundene Handbuchkopie verweisen.

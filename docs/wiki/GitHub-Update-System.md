@@ -7,11 +7,13 @@ Vertraute Quelle: `MichaelGahnDESIGN/MGD_EU-Label_Shopware`. Paketname: `MgdEuLa
 1. Stabiles Release über GitHubs API lesen.
 2. Versionsnummer mit der lokal installierten Paketversion vergleichen.
 3. Exaktes Release-Asset, HTTPS-URL, Größe und SHA-256-Digest prüfen.
-4. Archiv in privatem Arbeitsverzeichnis prüfen: Wurzel, Pfade, Symlinks, Größen, Plugin-Identität und Version.
+4. Archiv in privatem Arbeitsverzeichnis prüfen: Wurzel, Pfade, Symlinks, Größen, Plugin-Identität und Version. Abhängigkeitsdeklarationen müssen zur bereits installierten Version passen.
 5. Kontrolliert vorbereiten und Shopwares Plugin-Liste aktualisieren.
 6. Im nativen Backend das eigentliche Update ausführen.
 
 Fehlende oder nicht passende Sicherheitsmetadaten werden nicht durch „trotzdem installieren“ umgangen. Pre-Releases und Downgrades werden nicht automatisch vorbereitet.
+
+Die erste Version ist bei Laufzeitanforderungen bewusst konservativ: Ändert ein Release die `require`-Deklarationen für PHP, Shopware oder andere Pakete/Erweiterungen, wird es **vor** dem Austausch aktiver Dateien abgelehnt. Auch eine möglicherweise kompatible Änderung wird nicht ohne Prüfung angenommen. Solche Releases über eine kontrollierte manuelle Shopware-Installation einspielen, damit dessen native Anforderungsprüfung und die notwendige Plattform-/Abhängigkeitsaktualisierung vor der Aktivierung stattfinden können. Der GitHub-Updater führt keine Composer-Abhängigkeitsinstallation aus.
 
 ## Manuelle Prüfung für Integrationen
 
