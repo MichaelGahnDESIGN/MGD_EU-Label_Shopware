@@ -16,6 +16,8 @@ unzip -l dist/MgdEuLabel.zip
 
 Paketwurzel `MgdEuLabel/`, richtige Plugin-Klasse und unveränderte Originalgrafiken kontrollieren. Keine `.env`, Git-Daten, Backups, Dokumentations-Screenshots oder Tests im ZIP. Hash des fertigen Pakets mit dem veröffentlichten Asset vergleichen.
 
+Feste Reihenfolge, Rechte und Zeitstempel machen wiederholte Builds in derselben Umgebung reproduzierbar. Unterschiedliche ZIP-/Kompressionsbibliotheken können bei identischen enthaltenen Dateien trotzdem andere Archivbytes erzeugen. Maßgeblich für den Updater ist deshalb die Prüfsumme des tatsächlich veröffentlichten CI-Pakets, nicht die eines separat unter macOS gebauten Archivs.
+
 ## GitHub
 
 Nur geprüfte Änderungen nach `main` übernehmen. Release-Workflow anhand der tatsächlichen Workflow-Datei auslösen und seinen Abschluss prüfen. `MgdEuLabel.zip` und Prüfsumme veröffentlichen. GitHub stellt für hochgeladene Release-Assets einen Digest bereit; der Updater verlangt passende Integritätsmetadaten.
