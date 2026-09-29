@@ -1,0 +1,14 @@
+/* Alle Regeln bleiben im eigenen Namensraum; die Originalgrafik wird nicht umgestaltet. */
+.mgd-eu-label-dialog { padding: 0; border: 1px solid #777; border-radius: .35rem; width: min(52rem, calc(100% - 2rem)); max-width: calc(100% - 2rem); max-height: calc(100dvh - 2rem); color: #171717; background: #fff; }
+.mgd-eu-label-dialog::backdrop { background: rgb(0 0 0 / 65%); }
+.mgd-eu-label-dialog-header { display: flex; align-items: start; justify-content: space-between; gap: 1rem; padding: 1rem; border-bottom: 1px solid #ddd; }
+.mgd-eu-label-dialog-header h2 { font: 600 1.25rem/1.5 system-ui, sans-serif; margin: 0; color: #171717; }
+.mgd-eu-label-close { flex-shrink: 0; padding: .5rem .75rem; font: inherit; color: #171717; background: #fff; border: 1px solid #555; border-radius: .25rem; cursor: pointer; }
+.mgd-eu-label-dialog-content { padding: 1rem; font: 1rem/1.5 system-ui, sans-serif; }
+.mgd-eu-label-dialog-content img, .mgd-eu-label-inline img { display: block; max-width: 100%; width: 100%; height: auto; }
+.mgd-eu-label-dialog-content a { color: #174f91; text-decoration: underline; }
+.mgd-eu-label-readable { margin-block: 1rem; }
+.mgd-eu-label-readable summary { cursor: pointer; }
+.mgd-eu-label-inline { margin-block: 1.5rem; max-width: 52rem; }
+.mgd-eu-label-placement { padding-block: .75rem; }
+.mgd-eu-label-close:focus-visible, .mgd-eu-label-dialog-content a:focus-visible, .mgd-eu-label-link:focus-visible, .mgd-eu-label-readable summary:focus-visible { outline: 3px solid #174f91; outline-offset: 3px; }

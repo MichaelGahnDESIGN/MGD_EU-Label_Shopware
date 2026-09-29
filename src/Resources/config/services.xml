@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
+  <services>
+    <service id="Mgd\EuLabel\Configuration\NoticeConfig"/>
+    <service id="Mgd\EuLabel\Storefront\NoticeExtension">
+      <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/><argument type="service" id="Mgd\EuLabel\Configuration\NoticeConfig"/>
+      <tag name="twig.extension"/>
+    </service>
+    <service id="Mgd\EuLabel\Update\ReleaseMetadata" abstract="true"/>
+    <service id="Mgd\EuLabel\Update\ArchiveValidator"/>
+    <service id="Mgd\EuLabel\Update\DownloadPolicy"/>
+    <service id="Mgd\EuLabel\Update\GitHubClient"><argument type="service" id="Mgd\EuLabel\Update\DownloadPolicy"/></service>
+    <service id="Mgd\EuLabel\Update\AtomicInstaller"><argument type="service" id="Mgd\EuLabel\Update\ArchiveValidator"/></service>
+    <service id="Mgd\EuLabel\Update\GitHubReleaseUpdater">
+      <argument type="service" id="Mgd\EuLabel\Update\GitHubClient"/><argument type="service" id="Mgd\EuLabel\Update\AtomicInstaller"/><argument type="service" id="Shopware\Core\Framework\Plugin\PluginService"/><argument>%kernel.project_dir%</argument>
+    </service>
+    <service id="Mgd\EuLabel\Controller\UpdateController" public="true">
+      <argument type="service" id="Mgd\EuLabel\Update\GitHubReleaseUpdater"/><argument type="service" id="logger"/>
+      <call method="setContainer"><argument type="service" id="service_container"/></call><tag name="controller.service_arguments"/>
+    </service>
+    <service id="Mgd\EuLabel\ScheduledTask\UpdateTask"><tag name="shopware.scheduled.task"/></service>
+    <service id="Mgd\EuLabel\ScheduledTask\UpdateTaskHandler">
+      <argument type="service" id="scheduled_task.repository"/><argument type="service" id="logger"/><argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/><argument type="service" id="Mgd\EuLabel\Update\GitHubReleaseUpdater"/>
+      <tag name="messenger.message_handler" handles="Mgd\EuLabel\ScheduledTask\UpdateTask"/>
+    </service>
+  </services>
+</container>

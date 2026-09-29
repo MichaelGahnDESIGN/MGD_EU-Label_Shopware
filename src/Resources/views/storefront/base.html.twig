@@ -1,0 +1,47 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_head %}
+    {{ parent() }}
+    {% set notice = mgd_eu_notice(context) %}
+    {% if notice.enabled %}
+        <link rel="stylesheet" href="{{ asset('bundles/mgdeulabel/notice.css', 'asset') }}">
+        <script src="{{ asset('bundles/mgdeulabel/notice.js', 'asset') }}" defer></script>
+    {% endif %}
+{% endblock %}
+
+{% block base_esi_header %}
+    {{ parent() }}
+    {% set notice = mgd_eu_notice(context) %}
+    {% if notice.enabled and notice.headerLink %}
+        <div class="mgd-eu-label-placement container">
+            {% sw_include '@MgdEuLabel/storefront/component/mgd-eu-label/link.html.twig' %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block base_body_inner %}
+    {{ parent() }}
+    {% set notice = mgd_eu_notice(context) %}
+    {% if notice.enabled %}
+        {# Bewusst außerhalb des Footers: kundenspezifische Footer-Regeln verändern den Dialog nicht. #}
+        {% sw_include '@MgdEuLabel/storefront/component/mgd-eu-label/dialog.html.twig' %}
+        {% if notice.inlineNotice %}
+            <aside class="mgd-eu-label-inline container" aria-label="{{ notice.linkText }}">
+                <a href="{{ asset('bundles/mgdeulabel/notices/legal-guarantee-' ~ notice.language ~ '.svg', 'asset') }}">
+                    <img src="{{ asset('bundles/mgdeulabel/notices/legal-guarantee-' ~ notice.language ~ '.svg', 'asset') }}" alt="{{ notice.imageAlt }}" loading="lazy">
+                </a>
+                {% sw_include '@MgdEuLabel/storefront/component/mgd-eu-label/text.html.twig' %}
+            </aside>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block base_main_inner %}
+    {{ parent() }}
+    {% set notice = mgd_eu_notice(context) %}
+    {% if notice.enabled and notice.checkoutLink and controllerName == 'Checkout' %}
+        <div class="mgd-eu-label-placement container">
+            {% sw_include '@MgdEuLabel/storefront/component/mgd-eu-label/link.html.twig' %}
+        </div>
+    {% endif %}
+{% endblock %}

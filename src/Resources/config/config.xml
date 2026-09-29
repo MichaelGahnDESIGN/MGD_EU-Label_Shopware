@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+  <card>
+    <title>EU-Gewährleistungsinformation</title><title lang="en-GB">EU legal guarantee notice</title>
+    <input-field type="bool"><name>enabled</name><label>Anzeige aktivieren</label><label lang="en-GB">Enable notice</label><defaultValue>true</defaultValue></input-field>
+    <input-field type="bool"><name>footerLink</name><label>Link im Footer-Service-Menü</label><label lang="en-GB">Footer service menu link</label><defaultValue>true</defaultValue></input-field>
+    <input-field type="bool"><name>headerLink</name><label>Zusätzlicher Link unter dem Header</label><label lang="en-GB">Additional link below header</label><defaultValue>false</defaultValue></input-field>
+    <input-field type="bool"><name>checkoutLink</name><label>Zusätzlicher Link im Checkout</label><label lang="en-GB">Additional checkout link</label><defaultValue>false</defaultValue></input-field>
+    <input-field type="bool"><name>inlineNotice</name><label>Offizielle Grafik zusätzlich direkt anzeigen</label><label lang="en-GB">Also show official image inline</label><defaultValue>false</defaultValue><helpText>Footer allein ist kein Konformitätsnachweis. Anzeigeort und rechtliche Anforderungen eigenständig prüfen.</helpText></input-field>
+    <input-field type="single-select"><name>language</name><label>Grafiksprache</label><label lang="en-GB">Image language</label><defaultValue>auto</defaultValue><options><option><id>auto</id><name>Automatisch (DE, sonst EN)</name></option><option><id>de</id><name>Deutsch</name></option><option><id>en</id><name>English</name></option></options></input-field>
+    <input-field type="text"><name>linkText</name><label>Linktext (leer = passende Sprache)</label><label lang="en-GB">Link text (empty = localized)</label></input-field>
+  </card>
+  <card>
+    <title>GitHub-Updates</title><title lang="en-GB">GitHub updates</title>
+    <input-field type="bool"><name>automaticUpdates</name><label>Alle sechs Stunden Update-Dateien vorbereiten</label><label lang="en-GB">Prepare update files every six hours</label><defaultValue>false</defaultValue><helpText>Standardmäßig aus. Geprüfte neuere Releases werden mit privater Sicherung vorbereitet. Den eigentlichen Plugin-Updatevorgang anschließend in Shopware ausführen. Wartungsfenster empfohlen.</helpText></input-field>
+  </card>
+</config>

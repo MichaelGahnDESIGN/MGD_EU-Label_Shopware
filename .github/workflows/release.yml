@@ -1,0 +1,49 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Vorhandener stabiler Tag (z. B. v0.1.0)
+        required: true
+        type: string
+permissions:
+  contents: write
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag && format('refs/tags/{0}', inputs.tag) || github.ref }}
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: zip, curl, mbstring
+          tools: composer:v2
+          coverage: none
+      - name: Stabile Version und Tag prüfen
+        env:
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+        run: php -r '$tag = getenv("RELEASE_TAG"); $manifest = json_decode(file_get_contents("composer.json"), true, 32, JSON_THROW_ON_ERROR); if (!preg_match("/^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$/D", $tag) || substr($tag, 1) !== $manifest["version"]) { fwrite(STDERR, "Tag und stabile Plugin-Version stimmen nicht überein.\n"); exit(1); }'
+      - name: Qualität vor Veröffentlichung
+        run: |
+          composer validate --no-check-publish
+          find src scripts tests -name '*.php' -print0 | xargs -0 -n1 php -l
+          php tests/run.php
+          php scripts/build-release.php
+      - name: Öffentlichen Release veröffentlichen
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+        run: gh release create "$RELEASE_TAG" dist/MgdEuLabel.zip dist/MgdEuLabel.zip.sha256 --draft --verify-tag --title "MGD EU Label Plugin $RELEASE_TAG" --generate-notes
+      - name: GitHub Asset-Digest gegen gebaute Datei prüfen
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          expected="sha256:$(sha256sum dist/MgdEuLabel.zip | cut -d ' ' -f 1)"
+          actual=$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/$RELEASE_TAG" --jq '.assets[] | select(.name == "MgdEuLabel.zip") | .digest')
+          test "$actual" = "$expected"
+          gh release edit "$RELEASE_TAG" --draft=false

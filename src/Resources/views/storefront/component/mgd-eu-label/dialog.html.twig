@@ -1,0 +1,13 @@
+<dialog class="mgd-eu-label-dialog" id="mgd-eu-label-dialog" aria-labelledby="mgd-eu-label-title" lang="{{ notice.language }}">
+    <div class="mgd-eu-label-dialog-header">
+        <h2 id="mgd-eu-label-title">{{ notice.linkText }}</h2>
+        <button type="button" class="mgd-eu-label-close" data-mgd-eu-label-close autofocus>{{ notice.closeText }}</button>
+    </div>
+    <div class="mgd-eu-label-dialog-content">
+        <a href="{{ asset('bundles/mgdeulabel/notices/legal-guarantee-' ~ notice.language ~ '.svg', 'asset') }}" target="_blank" rel="noopener">
+            <img src="{{ asset('bundles/mgdeulabel/notices/legal-guarantee-' ~ notice.language ~ '.svg', 'asset') }}" alt="{{ notice.imageAlt }}">
+        </a>
+        {% sw_include '@MgdEuLabel/storefront/component/mgd-eu-label/text.html.twig' %}
+        <a href="https://europa.eu/youreurope/citizens/consumers/shopping/guarantees/index_{{ notice.language }}.htm" target="_blank" rel="noopener">Your Europe – {{ notice.language == 'de' ? 'Weitere Informationen zur Gewährleistung' : 'More information about legal guarantees' }}</a>
+    </div>
+</dialog>

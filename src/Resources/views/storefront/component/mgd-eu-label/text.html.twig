@@ -1,0 +1,13 @@
+<details class="mgd-eu-label-readable">
+    <summary>{{ notice.detailsText }}</summary>
+    {# Ergänzende barrierearme Information außerhalb der unveränderten offiziellen Grafik. #}
+    {% if notice.language == 'de' %}
+        <p>Für neue Waren gilt eine gesetzliche Gewährleistung von mindestens zwei Jahren ab Lieferung. Dieser Schutz besteht unabhängig von einer zusätzlichen gewerblichen Garantie.</p>
+        <p>Bei mangelhaften Waren haben Verbraucher unter den gesetzlichen Voraussetzungen Anspruch auf kostenlose Reparatur oder Ersatz. Ist dies nicht möglich oder erfolgt es nicht angemessen, kommen eine Preisminderung oder die Beendigung des Vertrags in Betracht.</p>
+        <p>Die konkreten Voraussetzungen und zusätzliche nationale Rechte finden Sie unter „Your Europe“. Die offizielle Grafik kann über den Bildlink in einem eigenen Browserfenster vergrößert werden.</p>
+    {% else %}
+        <p>New goods have a legal guarantee of at least two years from delivery. This protection is independent of any additional commercial guarantee.</p>
+        <p>For faulty goods, consumers are entitled to repair or replacement free of charge under the applicable legal conditions. If this is impossible or is not completed appropriately, a price reduction or termination of the contract may be available.</p>
+        <p>See Your Europe for the specific conditions and additional national rights. Open the image link in its own browser window to enlarge the official notice.</p>
+    {% endif %}
+</details>

@@ -1,0 +1,14 @@
+{% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
+
+{% block layout_footer_service_menu_content %}
+    {{ parent() }}
+    {% set notice = mgd_eu_notice(context) %}
+    {% if notice.enabled and notice.footerLink %}
+        {# Der native Inhalt besitzt eine eigene UL; eine zweite Liste erhält valides HTML. #}
+        <ul class="footer-service-menu-list list-unstyled d-flex flex-wrap justify-content-center mgd-eu-label-footer-list">
+            <li class="footer-service-menu-item mgd-eu-label-footer-item">
+                {% sw_include '@MgdEuLabel/storefront/component/mgd-eu-label/link.html.twig' %}
+            </li>
+        </ul>
+    {% endif %}
+{% endblock %}
