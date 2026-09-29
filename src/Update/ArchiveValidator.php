@@ -54,6 +54,7 @@ final class ArchiveValidator
                 || ($manifest['version'] ?? '') !== $version || ($manifest['extra']['shopware-plugin-class'] ?? '') !== 'Mgd\\EuLabel\\MgdEuLabel'
                 || ($manifest['autoload']['psr-4']['Mgd\\EuLabel\\'] ?? '') !== 'src/'
                 || !in_array('MgdEuLabel/src/MgdEuLabel.php', $files, true)) { throw new \RuntimeException('ZIP besitzt eine falsche Plugin-Identität oder Version.'); }
+            RequirementPolicy::normalize($manifest['require'] ?? null);
             return $files;
         } finally { $zip->close(); }
     }

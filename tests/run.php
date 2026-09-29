@@ -20,11 +20,13 @@ function rejects(callable $operation, string $message): void
     throw new RuntimeException($message);
 }
 
-function manifest(string $version = '0.2.0'): string
+function manifest(string $version = '0.2.0', ?array $requirements = ['php' => '>=8.2', 'ext-zip' => '*', 'ext-curl' => '*', 'ext-mbstring' => '*', 'shopware/core' => '~6.7.0', 'shopware/storefront' => '~6.7.0']): string
 {
-    return json_encode(['name' => 'mgd/eu-label-shopware', 'type' => 'shopware-platform-plugin', 'version' => $version,
+    $manifest = ['name' => 'mgd/eu-label-shopware', 'type' => 'shopware-platform-plugin', 'version' => $version,
         'autoload' => ['psr-4' => ['Mgd\\EuLabel\\' => 'src/']],
-        'extra' => ['shopware-plugin-class' => 'Mgd\\EuLabel\\MgdEuLabel']], JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES);
+        'extra' => ['shopware-plugin-class' => 'Mgd\\EuLabel\\MgdEuLabel']];
+    if ($requirements !== null) { $manifest['require'] = $requirements; }
+    return json_encode($manifest, JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES);
 }
 
 function archive(array $entries): string
@@ -183,6 +185,38 @@ $tests['Release-Paket: feste Root, Allowlist und reproduzierbare Integritätsdat
     } finally {
         foreach (['MgdEuLabel.zip', 'MgdEuLabel.zip.sha256'] as $name) { if (is_file($destination . '/' . $name)) { unlink($destination . '/' . $name); } }
         if (is_dir($destination)) { rmdir($destination); }
+    }
+};
+
+$tests['Installer: geänderte Runtime-Anforderungen dürfen niemals aktive Dateien austauschen'] = static function (): void {
+    $root = sys_get_temp_dir() . '/mgd-eu-require-' . bin2hex(random_bytes(8));
+    mkdir($root . '/custom/plugins/MgdEuLabel', 0700, true);
+    $original = manifest('0.1.0');
+    file_put_contents($root . '/custom/plugins/MgdEuLabel/composer.json', $original);
+    $installer = new Mgd\EuLabel\Update\AtomicInstaller(new Mgd\EuLabel\Update\ArchiveValidator());
+    $require = json_decode($original, true)['require'];
+    $removed = $require; unset($removed['ext-zip']);
+    $cases = [null, [], array_replace($require, ['php' => '>=8.4']), array_replace($require, ['shopware/core' => '~6.8.0', 'shopware/storefront' => '~6.8.0']), $removed, $require + ['vendor/new-package' => '^1.0']];
+    try {
+        foreach ($cases as $requirements) {
+            $path = archive(['MgdEuLabel/composer.json' => manifest('0.2.0', $requirements), 'MgdEuLabel/src/MgdEuLabel.php' => '<?php // Test']);
+            $refreshes = 0;
+            try {
+                rejects(static fn() => $installer->install($path, '0.2.0', $root . '/custom/plugins/MgdEuLabel', $root . '/var/mgd-eu-label', static function () use (&$refreshes): void { ++$refreshes; }), 'Geänderte Runtime-Anforderungen wurden zugelassen');
+                check(file_get_contents($root . '/custom/plugins/MgdEuLabel/composer.json') === $original, 'Aktive Dateien wurden vor Kompatibilitätsprüfung verändert');
+                check($refreshes === 0, 'Refresh trotz abgewiesener Runtime-Anforderungen');
+                check(glob($root . '/var/mgd-eu-label/backup-*') === [], 'Sicherung/Rename trotz abgewiesener Runtime-Anforderungen');
+            } finally { unlink($path); }
+        }
+        // Gleiche Anforderungen bleiben bei anderer JSON-Schlüsselreihenfolge kompatibel.
+        $path = archive(['MgdEuLabel/composer.json' => manifest('0.2.0', array_reverse($require, true)), 'MgdEuLabel/src/MgdEuLabel.php' => '<?php // Test']);
+        try { $installer->install($path, '0.2.0', $root . '/custom/plugins/MgdEuLabel', $root . '/var/mgd-eu-label', static function (): void {}); }
+        finally { unlink($path); }
+        check(json_decode(file_get_contents($root . '/custom/plugins/MgdEuLabel/composer.json'), true)['version'] === '0.2.0', 'Identische Anforderungen wurden abgewiesen');
+    } finally {
+        $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($root, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST);
+        foreach ($files as $file) { $file->isDir() ? rmdir($file->getPathname()) : unlink($file->getPathname()); }
+        rmdir($root);
     }
 };
 

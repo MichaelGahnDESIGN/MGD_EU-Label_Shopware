@@ -41,6 +41,9 @@ final class AtomicInstaller
             $zip = new \ZipArchive();
             if ($zip->open($archive) !== true) { throw new \RuntimeException('Geprüftes ZIP kann nicht erneut geöffnet werden.'); }
             try {
+                // Vor jeder Änderung aktiver Dateien: auch neue/entfernte Abhängigkeiten abweisen.
+                $candidate = json_decode((string) $zip->getFromName('MgdEuLabel/composer.json'), true, 32, JSON_THROW_ON_ERROR);
+                RequirementPolicy::assertIdentical($current['require'] ?? null, $candidate['require'] ?? null);
                 foreach ($files as $file) {
                     $destination = $stage . '/' . substr($file, strlen('MgdEuLabel/'));
                     if (!is_dir(dirname($destination)) && !mkdir(dirname($destination), 0755, true)) { throw new \RuntimeException('Staging-Unterordner kann nicht erstellt werden.'); }

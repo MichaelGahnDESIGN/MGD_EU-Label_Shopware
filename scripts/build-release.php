@@ -4,6 +4,7 @@ use Mgd\EuLabel\Update\ArchiveValidator;
 
 // Reproduzierbarer ZIP-Build ohne Abhängigkeit von einem installierten Shopware oder Storefront-Build.
 require __DIR__ . '/../src/Update/ReleaseMetadata.php';
+require __DIR__ . '/../src/Update/RequirementPolicy.php';
 require __DIR__ . '/../src/Update/ArchiveValidator.php';
 
 $root = dirname(__DIR__);
