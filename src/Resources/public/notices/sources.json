@@ -1,0 +1,19 @@
+{
+  "publisher": "European Commission / European Union",
+  "copyright": "© European Union, 2026",
+  "sourcePage": "https://commission.europa.eu/publications/practical-guidelines-and-high-resolution-vector-files-eu-notice-and-label-product-guarantees_en",
+  "sourceArchive": "https://commission.europa.eu/document/download/27c45f1f-78a1-47a7-a7cc-adf23afee5ea_en?filename=SVG.zip",
+  "legalNotice": "https://commission.europa.eu/legal-notice_en",
+  "regulation": "https://eur-lex.europa.eu/eli/reg_impl/2025/1960/oj/deu",
+  "changes": "File names only; graphic contents unchanged.",
+  "files": {
+    "legal-guarantee-de.svg": {
+      "originalName": "Legal guarantee_notice DE.svg",
+      "sha256": "fd39364dbe42fa775ff55fb9b7aa80c377a5d04219929fef86a8522eed486b1a"
+    },
+    "legal-guarantee-en.svg": {
+      "originalName": "Legal guarantee_notice EN.svg",
+      "sha256": "d1b4293b75637022b582b3025f789d292e1c845660a0460d855bbe523b9763f7"
+    }
+  }
+}

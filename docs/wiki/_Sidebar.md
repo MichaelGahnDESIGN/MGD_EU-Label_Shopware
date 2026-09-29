@@ -1,0 +1,15 @@
+### MGD EU Label Plugin
+
+- [Start](Home)
+- [Installation](Installation-und-Updates)
+- [Einstellungen](Einstellungen)
+- [Rechtliche Grenzen](Rechtliche-Anzeigegrenzen)
+- [Bedienung](Bedienung-und-Barrierefreiheit)
+- [Themes](Themes-und-Integration)
+- [GitHub-Updates](GitHub-Update-System)
+- [Sicherheit und Rückfall](Sicherheit-Datenschutz-und-Rueckfall)
+- [Fehlerbehebung](Fehlerbehebung)
+- [Architektur](Entwicklerarchitektur)
+- [Erweiterungsmodell](Erweiterungsmodell)
+- [Originaldateien](Originaldateien-und-Quellen)
+- [Releases](Releaseprozess)
