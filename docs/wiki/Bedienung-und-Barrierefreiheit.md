@@ -2,6 +2,8 @@
 
 Der Auslöser ist ein verständlich beschrifteter Link. Mit JavaScript öffnet sich ein nativer HTML-Dialog. Ohne JavaScript bleibt das vollständige Originalmotiv über das Linkziel erreichbar.
 
+Ab Version 1.1.2 schließt auch ein Klick oder Tippen auf den abgedunkelten Hintergrund außerhalb der Dialogfläche. Klicks innerhalb bleiben ohne Schließwirkung. Eine im Dialog begonnene Auswahl-/Wischgeste darf ihn beim Loslassen außerhalb nicht schließen.
+
 ## Tastatur
 
 Mit Tab den Link erreichen und Enter drücken. Im geöffneten Dialog müssen Schließen und Informationslink erreichbar sein. Escape schließt den Dialog; der Fokus kehrt zum auslösenden Link zurück. Der Hintergrund darf während des modalen Dialogs nicht normal bedienbar sein.

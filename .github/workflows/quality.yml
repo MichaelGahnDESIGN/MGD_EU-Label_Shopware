@@ -25,6 +25,11 @@ jobs:
         run: composer validate --no-check-publish
       - name: Verhalten und echte Archive
         run: php tests/run.php
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Dialog-Verhalten
+        run: node tests/notice-dialog.test.cjs
       - name: Release-Paket und Digest
         run: php scripts/build-release.php
       - uses: actions/upload-artifact@v4

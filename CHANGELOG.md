@@ -1,5 +1,13 @@
 # Änderungen
 
+## 1.1.2 – Schließen über den Hintergrund
+
+- Klick oder Tippen auf den abgedunkelten Bereich außerhalb der Lightbox schließt sie.
+- Innenabstände, Grafik, Text und begonnene Wisch-/Ziehgesten innerhalb des Dialogs schließen ihn nicht versehentlich.
+- Fokus-Rückgabe, Escape und Schließen-Button bleiben erhalten.
+- Ausführbarer JavaScript-Regressionstest für die tatsächliche Ereignislogik.
+- Versionssprung von 0.1.0 auf 1.1.2 auf ausdrücklichen Kundenwunsch; keine geänderten Plattformanforderungen.
+
 ## 0.1.0 – erste Ausbaustufe
 
 - Eigenständiges Shopware-6.7-Plugin für den harmonisierten EU-Gewährleistungshinweis.

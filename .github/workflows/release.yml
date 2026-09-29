@@ -37,6 +37,11 @@ jobs:
           find src scripts tests -name '*.php' -print0 | xargs -0 -n1 php -l
           php tests/run.php
           php scripts/build-release.php
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Dialog-Verhalten vor Veröffentlichung
+        run: node tests/notice-dialog.test.cjs
       - name: Release-Entwurf vorbereiten
         env:
           GH_TOKEN: ${{ github.token }}

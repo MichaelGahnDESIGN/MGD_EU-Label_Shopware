@@ -139,6 +139,7 @@ Eine Prüfsumme bestätigt das veröffentlichte Asset, nicht die Vertrauenswürd
 ```bash
 composer validate --no-check-publish
 php tests/run.php
+node tests/notice-dialog.test.cjs
 find src tests scripts -name '*.php' -exec php -l {} \;
 php scripts/build-release.php
 ```
