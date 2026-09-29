@@ -10,6 +10,10 @@ on:
         type: string
 permissions:
   contents: write
+# Gleiche Tags niemals parallel hochladen/veröffentlichen; laufende Releases nicht abbrechen.
+concurrency:
+  group: mgd-eu-label-release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
 jobs:
   package:
     runs-on: ubuntu-latest
