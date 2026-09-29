@@ -33,17 +33,26 @@ jobs:
           find src scripts tests -name '*.php' -print0 | xargs -0 -n1 php -l
           php tests/run.php
           php scripts/build-release.php
-      - name: Öffentlichen Release veröffentlichen
+      - name: Release-Entwurf vorbereiten
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
-        run: gh release create "$RELEASE_TAG" dist/MgdEuLabel.zip dist/MgdEuLabel.zip.sha256 --draft --verify-tag --title "MGD EU Label Plugin $RELEASE_TAG" --generate-notes
+        run: |
+          if is_draft=$(gh release view "$RELEASE_TAG" --json isDraft --jq '.isDraft'); then
+            if [ "$is_draft" != "true" ]; then
+              echo "Release ist bereits veröffentlicht; vorhandene Assets werden nicht verändert." >&2
+              exit 1
+            fi
+            gh release upload "$RELEASE_TAG" dist/MgdEuLabel.zip dist/MgdEuLabel.zip.sha256 --clobber
+          else
+            gh release create "$RELEASE_TAG" dist/MgdEuLabel.zip dist/MgdEuLabel.zip.sha256 --draft --verify-tag --title "MGD EU Label Plugin $RELEASE_TAG" --generate-notes
+          fi
       - name: GitHub Asset-Digest gegen gebaute Datei prüfen
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
         run: |
           expected="sha256:$(sha256sum dist/MgdEuLabel.zip | cut -d ' ' -f 1)"
-          actual=$(gh api "repos/$GITHUB_REPOSITORY/releases/tags/$RELEASE_TAG" --jq '.assets[] | select(.name == "MgdEuLabel.zip") | .digest')
+          actual=$(gh release view "$RELEASE_TAG" --json assets --jq '.assets[] | select(.name == "MgdEuLabel.zip") | .digest')
           test "$actual" = "$expected"
           gh release edit "$RELEASE_TAG" --draft=false
