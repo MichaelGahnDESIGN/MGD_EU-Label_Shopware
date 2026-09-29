@@ -147,6 +147,10 @@ Der Paketbau schreibt nach `dist/` (Git-ignoriert). Im ZIP liegen nur Laufzeitda
 
 Referenztests ersetzen keine Shopware-Installation. Theme, Admin-Lifecycle, Queue und Updatevorbereitung separat prüfen. Keine pauschale WCAG-, Rechts- oder Checkout-Zertifizierung.
 
+Zusätzlich lässt sich `php tests/twig-render.php /pfad/zum/vendor/autoload.php` mit einer vorhandenen Twig-3-Laufzeit ausführen. Der Renderingtest bildet die relevanten nativen CMS-/Checkout-Vererbungsfälle nach; er ist kein vollständiger Shopware-Kerneltest.
+
+Die Erstversion wurde am 29. September 2026 zusätzlich in Shopware 6.7.14.2 installiert und aktiviert. Im echten Chrome geprüft: Startseite, Kategorie, Produktseite, leerer Warenkorb, Deutsch/Englisch, zusätzliche Anzeigeorte, 390/768/1440 Pixel, Enter, Escape, Schließen und Fokus-Rückgabe. Die geschützte Updateprüfung und anonymer Zugriffsschutz wurden über die Administration-API geprüft. Ein vollständiger Bestellablauf, ein späteres echtes Versionsupgrade und die produktive Queue-Ausführung sind damit **nicht** nachgewiesen.
+
 ## Datenschutz
 
 Grafik und Lightbox kommen vom eigenen Server. Keine eigenen Cookies, Besucherkennungen, Kundenprofile, Bestell- oder Zahlungsdaten werden benötigt.

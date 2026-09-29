@@ -6,7 +6,7 @@
 
 **Architecture:** Das Plugin erweitert native Twig-Blöcke ohne Core- oder Theme-Dateien zu verändern. Offizielle farbige Originaldateien werden lokal ausgeliefert. Konfiguration, Darstellung und GitHub-Paketprüfung sind getrennte Komponenten; spätere produktbezogene GARAN-Daten gehören nicht in die aktuelle globale Hinweis-Konfiguration.
 
-**Tech Stack:** PHP 8.2+, Shopware 6.7, Symfony-DI/HttpClient, Twig, native HTML-Dialoge mit isoliertem JavaScript, Shopware-SystemConfig, GitHub Releases und Actions.
+**Tech Stack:** PHP 8.2+, Shopware 6.7, Symfony-DI/cURL, Twig, native HTML-Dialoge mit isoliertem JavaScript, Shopware-SystemConfig, GitHub Releases und Actions.
 
 ## Rahmen und Quellen
 
@@ -27,7 +27,7 @@
 - [ ] GitHub-Updater: festes öffentliches Repository und Asset `MgdEuLabel.zip`; ausschließlich stabile höhere Semver-Versionen. Keine frei konfigurierbare Download-URL. Größenlimit, SHA-256-Abgleich des Release-Assets, strenge ZIP-Pfade/Wurzel, keine Symlinks, Plugin-Klasse und Version prüfen. Private temporäre Staging-/Backup-Verzeichnisse, Prozesssperre, kontrollierter Dateiaustausch mit Wiederherstellung bei Fehlern. Anschließend nur native Plugin-Liste aktualisieren, Lifecycle-Update bleibt in Shopware.
 - [ ] Updateprüfung standardmäßig aus, optional via Scheduled Task; Backend-Konfiguration erklärt Queue-/Cron-Abhängigkeit. GitHub-Ausfall beeinflusst niemals den Storefront-Aufruf.
 - [ ] Reproduzierbares Paket mit genau Plugin-Dateien und Original-Assets erzeugen, keine Tests, Zugangsdaten, Git- oder Wiki-Verzeichnisse im ZIP.
-- [ ] PHP-Tests mit `php tests/run.php`, Syntaxprüfungen mit `find src tests scripts -name '*.php' -exec php -l {} \;`, Composer-Metadaten mit `composer validate --strict` prüfen. Negative Archivtests umfassen `../`, absolute Pfade, Backslash, Symlink und falsche Identität.
+- [x] Zehn PHP-Testgruppen, echte Twig-Renderingtests, PHP-/JS-Syntax und `composer validate --no-check-publish` erfolgreich. `--strict` liefert wegen der für Shopware-ZIP-Updates benötigten expliziten Version einen erwarteten Hinweis; keine Schemafehler. Negative Archivtests umfassen `../`, absolute Pfade, Backslash, Symlink, falsche Identität und geänderte Abhängigkeiten.
 - [ ] Implementierung committen und erst Spezifikationsprüfung, danach Qualitätsprüfung durchführen; offene Befunde vor Veröffentlichung beheben.
 
 ## Aufgabe 2: Handbuch und Veröffentlichung
