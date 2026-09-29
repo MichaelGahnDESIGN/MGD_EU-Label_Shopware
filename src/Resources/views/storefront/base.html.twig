@@ -1,14 +1,5 @@
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
 
-{% block base_head %}
-    {{ parent() }}
-    {% set notice = mgd_eu_notice(context) %}
-    {% if notice.enabled %}
-        <link rel="stylesheet" href="{{ asset('bundles/mgdeulabel/notice.css', 'asset') }}">
-        <script src="{{ asset('bundles/mgdeulabel/notice.js', 'asset') }}" defer></script>
-    {% endif %}
-{% endblock %}
-
 {% block base_esi_header %}
     {{ parent() }}
     {% set notice = mgd_eu_notice(context) %}
@@ -39,7 +30,8 @@
 {% block base_main_inner %}
     {{ parent() }}
     {% set notice = mgd_eu_notice(context) %}
-    {% if notice.enabled and notice.checkoutLink and controllerName == 'Checkout' %}
+    {# checkout/register nutzt RegisterController; die native Route erkennt alle Checkout-Seiten. #}
+    {% if notice.enabled and notice.checkoutLink and app.request.attributes.get('_route') starts with 'frontend.checkout.' %}
         <div class="mgd-eu-label-placement container">
             {% sw_include '@MgdEuLabel/storefront/component/mgd-eu-label/link.html.twig' %}
         </div>

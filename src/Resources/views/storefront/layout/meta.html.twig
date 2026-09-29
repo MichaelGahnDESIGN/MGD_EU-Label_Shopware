@@ -1,0 +1,18 @@
+{% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
+
+{# CMS-Seiten ersetzen base_head ohne parent; ihr eigenes Meta-Template erbt diese Blöcke. #}
+{% block layout_head_stylesheet %}
+    {{ parent() }}
+    {% set notice = mgd_eu_notice(context) %}
+    {% if notice.enabled %}
+        <link rel="stylesheet" href="{{ asset('bundles/mgdeulabel/notice.css', 'asset') }}">
+    {% endif %}
+{% endblock %}
+
+{% block layout_head_javascript_assets %}
+    {{ parent() }}
+    {% set notice = mgd_eu_notice(context) %}
+    {% if notice.enabled %}
+        <script src="{{ asset('bundles/mgdeulabel/notice.js', 'asset') }}" defer></script>
+    {% endif %}
+{% endblock %}

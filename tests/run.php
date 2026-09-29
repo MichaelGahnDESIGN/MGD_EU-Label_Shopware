@@ -222,6 +222,20 @@ $tests['Installer: geänderte Runtime-Anforderungen dürfen niemals aktive Datei
     }
 };
 
+$tests['Storefront: Assets bleiben bei eigenem CMS-base_head im nativen Meta-Template verankert'] = static function (): void {
+    $base = __DIR__ . '/../src/Resources/views/storefront/';
+    check(is_file($base . 'layout/meta.html.twig'), 'Assets-Erweiterung des nativen Meta-Templates fehlt');
+    $meta = file_get_contents($base . 'layout/meta.html.twig');
+    check(str_contains($meta, "@Storefront/storefront/layout/meta.html.twig"), 'Natives Meta-Template wird nicht erweitert');
+    foreach (['layout_head_stylesheet' => 'notice.css', 'layout_head_javascript_assets' => 'notice.js'] as $block => $asset) {
+        check((bool) preg_match('/{% block ' . $block . ' %}(.*?){% endblock %}/s', $meta, $match), 'Natives Asset-Block fehlt: ' . $block);
+        check(str_contains($match[1], 'parent()') && str_contains($match[1], 'notice.enabled') && str_contains($match[1], $asset), 'Native Assets erhalten und Plugin-Asset ergänzen: ' . $asset);
+    }
+    check(!str_contains(file_get_contents($base . 'base.html.twig'), 'block base_head'), 'Assets dürfen nicht von einem überschriebenen base_head abhängen');
+    $baseTwig = file_get_contents($base . 'base.html.twig');
+    check(str_contains($baseTwig, "app.request.attributes.get('_route')") && str_contains($baseTwig, "starts with 'frontend.checkout.'"), 'Checkout-Erkennung muss auch RegisterController über seine Route einschließen');
+};
+
 $failed = 0;
 foreach ($tests as $name => $test) {
     try { $test(); fwrite(STDOUT, 'PASS ' . $name . PHP_EOL); }
