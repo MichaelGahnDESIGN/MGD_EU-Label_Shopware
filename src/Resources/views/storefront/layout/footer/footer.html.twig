@@ -7,7 +7,7 @@
         {# Der native Inhalt besitzt eine eigene UL; eine zweite Liste erhält valides HTML. #}
         <ul class="footer-service-menu-list list-unstyled d-flex flex-wrap justify-content-center mgd-eu-label-footer-list">
             <li class="footer-service-menu-item mgd-eu-label-footer-item">
-                {% sw_include '@MgdEuLabel/storefront/component/mgd-eu-label/link.html.twig' %}
+                {% sw_include '@MgdEuLabel/storefront/component/mgd-eu-label/link.html.twig' with {linkClass: 'footer-service-menu-link'} %}
             </li>
         </ul>
     {% endif %}

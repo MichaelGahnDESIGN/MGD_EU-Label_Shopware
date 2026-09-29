@@ -1,2 +1,2 @@
 {# Ohne JavaScript oder bei fehlendem dialog-Support öffnet dieser Link die Originalgrafik. #}
-<a class="mgd-eu-label-link" href="{{ asset('bundles/mgdeulabel/notices/legal-guarantee-' ~ notice.language ~ '.svg', 'asset') }}" data-mgd-eu-label-open aria-haspopup="dialog">{{ notice.linkText }}</a>
+<a class="mgd-eu-label-link {{ linkClass|default('') }}" href="{{ asset('bundles/mgdeulabel/notices/legal-guarantee-' ~ notice.language ~ '.svg', 'asset') }}" data-mgd-eu-label-open aria-haspopup="dialog">{{ notice.linkText }}</a>

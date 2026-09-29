@@ -12,6 +12,6 @@
   </card>
   <card>
     <title>GitHub-Updates</title><title lang="en-GB">GitHub updates</title>
-    <input-field type="bool"><name>automaticUpdates</name><label>Alle sechs Stunden Update-Dateien vorbereiten</label><label lang="en-GB">Prepare update files every six hours</label><defaultValue>false</defaultValue><helpText>Standardmäßig aus. Geprüfte neuere Releases werden mit privater Sicherung vorbereitet. Den eigentlichen Plugin-Updatevorgang anschließend in Shopware ausführen. Wartungsfenster empfohlen.</helpText></input-field>
+    <input-field type="bool"><name>automaticUpdates</name><label>Alle sechs Stunden Update-Dateien vorbereiten</label><label lang="en-GB">Prepare update files every six hours</label><defaultValue>false</defaultValue><helpText>Standardmäßig aus. Nur global für alle Verkaufskanäle einstellen. Erfordert laufenden Shopware ScheduledTask-/Queue-Worker und Scheduler bzw. Cron. Geprüfte neuere Releases werden mit privater Sicherung vorbereitet; anschließend den eigentlichen Plugin-Updatevorgang in Shopware ausführen. Wegen kurzer Umschaltlücke ein Wartungsfenster verwenden.</helpText><helpText lang="en-GB">Disabled by default. Configure globally for all sales channels. Requires a running Shopware ScheduledTask/queue worker and scheduler or cron. Verified newer releases are prepared with a private backup; then run the actual plugin update in Shopware. Use a maintenance window because the directory switch has a brief gap.</helpText></input-field>
   </card>
 </config>
