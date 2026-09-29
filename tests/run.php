@@ -201,8 +201,10 @@ $tests['Installer: geänderte Runtime-Anforderungen dürfen niemals aktive Datei
         foreach ($cases as $requirements) {
             $path = archive(['MgdEuLabel/composer.json' => manifest('0.2.0', $requirements), 'MgdEuLabel/src/MgdEuLabel.php' => '<?php // Test']);
             $refreshes = 0;
+            // Außerhalb der Arrow-Closure anlegen, damit die Referenz den echten Zähler verändert.
+            $refresh = static function () use (&$refreshes): void { ++$refreshes; };
             try {
-                rejects(static fn() => $installer->install($path, '0.2.0', $root . '/custom/plugins/MgdEuLabel', $root . '/var/mgd-eu-label', static function () use (&$refreshes): void { ++$refreshes; }), 'Geänderte Runtime-Anforderungen wurden zugelassen');
+                rejects(static fn() => $installer->install($path, '0.2.0', $root . '/custom/plugins/MgdEuLabel', $root . '/var/mgd-eu-label', $refresh), 'Geänderte Runtime-Anforderungen wurden zugelassen');
                 check(file_get_contents($root . '/custom/plugins/MgdEuLabel/composer.json') === $original, 'Aktive Dateien wurden vor Kompatibilitätsprüfung verändert');
                 check($refreshes === 0, 'Refresh trotz abgewiesener Runtime-Anforderungen');
                 check(glob($root . '/var/mgd-eu-label/backup-*') === [], 'Sicherung/Rename trotz abgewiesener Runtime-Anforderungen');
