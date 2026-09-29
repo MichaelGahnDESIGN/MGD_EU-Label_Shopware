@@ -2,6 +2,8 @@
 
 Das Plugin erweitert native Shopware-Twig-Blöcke mit `sw_extends` und erhält bestehende Inhalte über `parent()`. Es ersetzt weder Footer-Navigation noch Header oder Checkout vollständig.
 
+Die lokalen CSS-/JavaScript-Dateien werden in den Stylesheet-/JavaScript-Blöcken von `storefront/layout/meta.html.twig` eingebunden. Das ist wichtig, weil beispielsweise CMS-Seiten `base_head` vollständig ersetzen. Der Dialog selbst bleibt außerhalb des Footers, damit kundenspezifische Footer-Farben nicht seine Lesbarkeit verändern.
+
 ## Eigene Themes
 
 Ein Theme, das einen betroffenen Block vollständig ersetzt und keinen Elterninhalt ausgibt, kann Plugin-Inhalte unterdrücken. Prüfe die Twig-Vererbungsreihenfolge und die Sichtbarkeit von Plugin-Views. Ergänze gezielt den Plugin-Include, statt Shopware-Core-Dateien zu bearbeiten.

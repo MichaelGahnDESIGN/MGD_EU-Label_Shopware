@@ -56,7 +56,7 @@ Originalgrafiken werden nicht beschnitten, umgefärbt oder mit Werbung überlage
 | Shopware | 6.7.x mit Storefront; andere Versionen nicht freigegeben |
 | PHP | ab 8.2, zusätzlich Anforderungen deiner Shopware-Version |
 | Erweiterungen | ZIP, cURL, mbstring, JSON und normale Shopware-Anforderungen |
-| Theme | Native Footer-/Base-Twig-Blöcke oder entsprechende Integration |
+| Theme | Native Footer-/Base-/Meta-Twig-Blöcke oder entsprechende Integration |
 | Updatequelle | Öffentliches GitHub-Repository, kein persönlicher Token erforderlich |
 | Automatische Prüfung | Verarbeitete Scheduled Tasks und Message Queue |
 | Dateirechte | Plugin-Verzeichnis und private Update-Verzeichnisse beschreibbar |
