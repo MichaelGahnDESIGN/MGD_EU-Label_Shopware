@@ -165,3 +165,7 @@ Ein künftiges GARAN-Modul braucht getrennte Produktdaten wie Hersteller, Modell
 Eigener Code: **GPL-2.0-or-later**, © 2026 Michael Gahn DESIGN, [LICENSE](LICENSE). EU-Grafiken werden nicht als eigene Gestaltung beansprucht; ihre Herkunft und unveränderte Nutzung sind [gesondert dokumentiert](docs/wiki/Originaldateien-und-Quellen.md). Die Code-Lizenz hebt Vorgaben für amtliche Motive nicht auf.
 
 [Michael-Gahn.de](https://Michael-Gahn.de) · [GitHub](https://github.com/MichaelGahnDESIGN) · [Issues](https://github.com/MichaelGahnDESIGN/MGD_EU-Label_Shopware/issues)
+
+## Plugin-Icon – Version 1.1.4
+
+Eigenes lokales Icon in der Shopware-Erweiterungsverwaltung. Die Grafik ist im Release-Paket enthalten; keine externen Bilddienste und keine neuen gespeicherten Daten. Vorhandene Funktionen und Einstellungen bleiben unverändert.

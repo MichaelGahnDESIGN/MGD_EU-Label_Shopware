@@ -1,5 +1,11 @@
 # Änderungen
 
+## 1.1.4 – 2026-10-22
+
+- Plugin-Icon lokal eingebunden und im Release-Paket enthalten.
+- Darstellung in der Erweiterungsverwaltung ergänzt beziehungsweise verbessert.
+- Keine Änderung an Fachlogik, Einstellungen oder Datenbank.
+
 ## 1.1.3 – deutsche Standardsprache und kürzerer Update-Check
 
 - Die amtliche deutsche Grafik ist Standard, auch bei englischem Verkaufskanal; Englisch erscheint nur bei expliziter Auswahl.
