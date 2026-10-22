@@ -179,3 +179,9 @@ Die Plugin-Einstellungen sind für eine deutsche Shopware-Administrationssprache
 **Gewährleistung als Reiter auf Produktseiten anzeigen** ist standardmäßig aus. Eingeschaltet ergänzt es das native CMS-Element „Produktbeschreibung und Bewertungen“ um einen Reiter mit Grafik und ergänzender Zusammenfassung. Auf Mobilgeräten verwendet es Shopwares vorhandene Offcanvas-Ansicht. Eigene Produktlayouts müssen dieses Element enthalten; Themes, die die betreffenden Blöcke ersetzen, benötigen gegebenenfalls eine Anpassung. Footer-Link und Reiter lassen sich gemeinsam verwenden.
 
 Nach dem Update Assets installieren und Shopware-/Theme- sowie gegebenenfalls CDN-Cache erneuern. Eine Datenbankmigration ist nicht nötig. Die offiziellen SVG-Dateien werden unverändert übernommen. Die neue Platzierung ist keine rechtliche Konformitätszusage.
+
+## Fertiges Upload-Paket ab 1.2.1
+
+`MgdEuLabel.zip` enthält sämtliche fertigen JavaScript-, CSS- und Grafikdateien. In Shopware hochladen und den regulären Installations-/Updatevorgang abschließen; ein eigener Administration- oder Theme-Build ist für dieses Plugin nicht erforderlich. Shopwares normaler Updateablauf veröffentlicht die Assets automatisch. Anschließend die geöffnete Administration bzw. Shopseite neu laden.
+
+Der GitHub-Updater verwendet dasselbe vollständige ZIP. Nach der Vorbereitung weiterhin das native Update in Shopware ausführen; das bloße Herunterladen ist noch kein abgeschlossener Updatevorgang. Nur bei serverseitigen Sonderkonfigurationen (z. B. deaktivierter Asset-Veröffentlichung oder vorgeschaltetem CDN) kann ein zusätzlicher betrieblicher Schritt erforderlich sein.

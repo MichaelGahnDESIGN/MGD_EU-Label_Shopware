@@ -41,3 +41,9 @@ bin/console theme:compile
 Deaktivierung entfernt die Storefront-Erweiterung, ersetzt aber keine ggf. erforderliche gesetzliche Information. Vor dem Deaktivieren eine andere geeignete Anzeige organisieren. Deinstallation und eventuelle Entfernung der SystemConfig-Daten bewusst im Shopware-Dialog wählen. Das Plugin führt keine eigenen Kunden- oder Produkttabellen ein.
 
 Nach Rückbau Assets, Cache und Theme erneuern; kein hängen gebliebenes Linkziel darf bleiben. Ein manuell eingefügter Theme-Link wird nicht automatisch entfernt.
+
+## Fertiges Upload-Paket ab 1.2.1
+
+`MgdEuLabel.zip` enthält sämtliche fertigen JavaScript-, CSS- und Grafikdateien. In Shopware hochladen und den regulären Installations-/Updatevorgang abschließen; ein eigener Administration- oder Theme-Build ist für dieses Plugin nicht erforderlich. Shopwares normaler Updateablauf veröffentlicht die Assets automatisch. Anschließend die geöffnete Administration bzw. Shopseite neu laden.
+
+Der GitHub-Updater verwendet dasselbe vollständige ZIP. Nach der Vorbereitung weiterhin das native Update in Shopware ausführen; das bloße Herunterladen ist noch kein abgeschlossener Updatevorgang. Nur bei serverseitigen Sonderkonfigurationen (z. B. deaktivierter Asset-Veröffentlichung oder vorgeschaltetem CDN) kann ein zusätzlicher betrieblicher Schritt erforderlich sein.

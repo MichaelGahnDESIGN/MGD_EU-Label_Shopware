@@ -8,6 +8,13 @@ require __DIR__ . '/../src/Update/RequirementPolicy.php';
 require __DIR__ . '/../src/Update/ArchiveValidator.php';
 
 $root = dirname(__DIR__);
+// Diese Erweiterung liefert ihre Oberfläche ohne Administration- oder Theme-Build aus.
+foreach (['src/Resources/public/notice.js', 'src/Resources/public/notice.css',
+    'src/Resources/public/notices/legal-guarantee-de.svg', 'src/Resources/public/notices/legal-guarantee-en.svg'] as $asset) {
+    if (!is_file($root . '/' . $asset) || filesize($root . '/' . $asset) === 0) {
+        throw new RuntimeException('Eine erforderliche fertige Oberflächendatei fehlt.');
+    }
+}
 $destination = $argv[1] ?? $root . '/dist';
 $manifest = json_decode((string) file_get_contents($root . '/composer.json'), true, 32, JSON_THROW_ON_ERROR);
 $version = $manifest['version'] ?? '';

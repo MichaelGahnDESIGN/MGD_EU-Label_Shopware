@@ -1,7 +1,7 @@
 {
   "name": "mgd/eu-label-shopware",
   "description": "Offizielle EU-Gewährleistungsinformation für Shopware 6.7",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "type": "shopware-platform-plugin",
   "license": "GPL-2.0-or-later",
   "require": {

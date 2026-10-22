@@ -1,5 +1,12 @@
 # Änderungen
 
+## 1.2.1 – 2026-10-23
+
+- Release-Build verweigert Pakete ohne fertige JavaScript-, CSS- und Grafikdateien.
+- Upload und GitHub-Update ohne eigenen Administration-/Theme-Build dokumentiert.
+- Veröffentlichung der Dateien bleibt im nativen Shopware-Updateablauf.
+
+
 ## 1.2.0 – 2026-10-22
 
 - Deutsche und englische Einstellungstexte explizit zugeordnet.
