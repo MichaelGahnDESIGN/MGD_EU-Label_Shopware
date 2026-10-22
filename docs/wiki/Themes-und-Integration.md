@@ -20,4 +20,4 @@ Ein Store-API-/Headless-Frontend benutzt die Twig-Templates nicht. Dort muss die
 
 ## Mehrsprachigkeit
 
-Das Bild folgt dem Sprachkontext bzw. der festen Plugin-Auswahl. Individuelle Linktexte sind Konfigurationswerte, nicht automatisch pro Sprache übersetzte Rechtstexte. Für mehrere Sprachen bevorzugt Standardübersetzungen nutzen und jeden Absatzmarkt separat prüfen.
+Das Bild ist standardmäßig deutsch; nur die explizite Plugin-Auswahl Englisch verwendet die englische Grafik. Individuelle Linktexte sind Konfigurationswerte, nicht automatisch pro Sprache übersetzte Rechtstexte. Für mehrere Sprachen bevorzugt Standardübersetzungen nutzen und jeden Absatzmarkt separat prüfen.

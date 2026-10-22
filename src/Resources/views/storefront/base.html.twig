@@ -16,14 +16,6 @@
     {% if notice.enabled %}
         {# Bewusst außerhalb des Footers: kundenspezifische Footer-Regeln verändern den Dialog nicht. #}
         {% sw_include '@MgdEuLabel/storefront/component/mgd-eu-label/dialog.html.twig' %}
-        {% if notice.inlineNotice %}
-            <aside class="mgd-eu-label-inline container" aria-label="{{ notice.linkText }}">
-                <a href="{{ asset('bundles/mgdeulabel/notices/legal-guarantee-' ~ notice.language ~ '.svg', 'asset') }}">
-                    <img src="{{ asset('bundles/mgdeulabel/notices/legal-guarantee-' ~ notice.language ~ '.svg', 'asset') }}" alt="{{ notice.imageAlt }}" loading="lazy">
-                </a>
-                {% sw_include '@MgdEuLabel/storefront/component/mgd-eu-label/text.html.twig' %}
-            </aside>
-        {% endif %}
     {% endif %}
 {% endblock %}
 

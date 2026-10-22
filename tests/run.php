@@ -238,6 +238,22 @@ $tests['Storefront: Assets bleiben bei eigenem CMS-base_head im nativen Meta-Tem
     check(str_contains($baseTwig, "app.request.attributes.get('_route')") && str_contains($baseTwig, "starts with 'frontend.checkout.'"), 'Checkout-Erkennung muss auch RegisterController über seine Route einschließen');
 };
 
+$tests['Anzeige: deutsche Einstellungen, optionale Produktreiter und keine alte Direktanzeige'] = static function (): void {
+    $config = new Mgd\EuLabel\Configuration\NoticeConfig();
+    check(!$config->normalize([], 'de-DE')['productTab'], 'Produktreiter bleibt optional');
+    check($config->normalize(['productTab' => true], 'de-DE')['productTab'], 'Produktreiter lässt sich aktivieren');
+    check(!$config->normalize(['inlineNotice' => true], 'de-DE')['inlineNotice'], 'Alte Direktanzeige darf nicht wieder erscheinen');
+    $xml = simplexml_load_file(__DIR__ . '/../src/Resources/config/config.xml');
+    foreach ($xml->xpath('//card') as $card) {
+        check(count($card->xpath('title[@lang="de-DE"]')) === 1, 'Deutscher Kartentitel fehlt');
+        foreach ($card->{'input-field'} as $field) {
+            check(count($field->xpath('label[@lang="de-DE"]')) === 1, 'Deutsches Feldlabel fehlt');
+            check(count($field->xpath('label[@lang="en-GB"]')) === 1, 'Englisches Feldlabel fehlt');
+        }
+    }
+    check(count($xml->xpath('//input-field[name="inlineNotice"]')) === 0, 'Veraltete Direktanzeige darf nicht angeboten werden');
+};
+
 $failed = 0;
 foreach ($tests as $name => $test) {
     try { $test(); fwrite(STDOUT, 'PASS ' . $name . PHP_EOL); }

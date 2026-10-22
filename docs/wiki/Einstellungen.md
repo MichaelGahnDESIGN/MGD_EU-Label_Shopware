@@ -4,7 +4,7 @@
 
 ## Anzeige
 
-`enabled` schaltet die Storefront-Ausgabe an oder aus. `footerLink` ergänzt den nativen Footer, ohne seine bestehenden Links zu löschen. `headerLink` und `checkoutLink` bieten zusätzliche sichtbare Auslöser. `inlineNotice` zeigt das vollständige Motiv unterhalb des Footers direkt an, unabhängig vom Vergrößerungsdialog und außerhalb von Theme-Footer-Farbregeln.
+`enabled` schaltet die Storefront-Ausgabe an oder aus. `footerLink` ergänzt den nativen Footer, ohne seine bestehenden Links zu löschen. `headerLink` und `checkoutLink` bieten zusätzliche sichtbare Auslöser. `productTab` ergänzt einen Reiter im nativen Erlebniswelten-Element „Produktbeschreibung und Bewertungen“. Die frühere Direktanzeige `inlineNotice` wird ab 1.2.0 ignoriert; unterhalb des Footers erscheint keine große Grafik mehr.
 
 Standardmäßig ist nur der Footer-Link aktiv. Das ist eine technische Voreinstellung, keine rechtliche Empfehlung für jeden Shop. Stelle zusätzliche Orte anhand deines Layouts und deiner rechtlichen Prüfung ein.
 
@@ -25,3 +25,13 @@ Diese Betriebseinstellung ausdrücklich unter **„Alle Verkaufskanäle“** set
 ## Nach jeder Änderung
 
 Speichern, Cache berücksichtigen und den echten Verkaufskanal öffnen. Linktext, Sprache, vollständiges Motiv und Mobilansicht prüfen. Bei einem CDN gegebenenfalls dessen Cache gezielt erneuern. Browserprüfung nicht durch eine grüne Speicherbestätigung ersetzen.
+
+## Anzeige und Sprache ab Version 1.2.0
+
+Die Plugin-Einstellungen sind für eine deutsche Shopware-Administrationssprache vollständig deutsch. Wer Englisch bevorzugt, kann die Sprache seines Administrationsprofils auf Englisch umstellen. Das ist unabhängig von der Einstellung **Grafiksprache**: Das Label und seine Standardtexte erscheinen standardmäßig auf Deutsch; Englisch lässt sich ausdrücklich auswählen.
+
+**Link im Footer-Service-Menü** zeigt einen kompakten Link. Ein Klick öffnet die vollständige Originalgrafik in einem Modal. Schließen funktioniert über den Schließen-Knopf und Escape; anschließend kehrt der Tastaturfokus zum Link zurück. Ohne JavaScript öffnet der Link die Originalgrafik direkt. Die frühere Ausgabe als großes Bild am Seitenende entfällt, auch wenn `inlineNotice` früher eingeschaltet war.
+
+**Gewährleistung als Reiter auf Produktseiten anzeigen** ist standardmäßig aus. Eingeschaltet ergänzt es das native CMS-Element „Produktbeschreibung und Bewertungen“ um einen Reiter mit Grafik und ergänzender Zusammenfassung. Auf Mobilgeräten verwendet es Shopwares vorhandene Offcanvas-Ansicht. Eigene Produktlayouts müssen dieses Element enthalten; Themes, die die betreffenden Blöcke ersetzen, benötigen gegebenenfalls eine Anpassung. Footer-Link und Reiter lassen sich gemeinsam verwenden.
+
+Nach dem Update Assets installieren und Shopware-/Theme- sowie gegebenenfalls CDN-Cache erneuern. Eine Datenbankmigration ist nicht nötig. Die offiziellen SVG-Dateien werden unverändert übernommen. Die neue Platzierung ist keine rechtliche Konformitätszusage.

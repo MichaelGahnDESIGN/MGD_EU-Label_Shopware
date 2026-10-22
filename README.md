@@ -28,7 +28,7 @@ Verwende das Release-Asset **MgdEuLabel.zip**, nicht GitHubs automatisch erzeugt
 
 - Footer-Eintrag „Gesetzliche Gewährleistung“ mit vollständigem Hinweis in einer Lightbox.
 - Unveränderte offizielle farbige SVG-Originaldateien der Europäischen Kommission, Deutsch und Englisch.
-- Optionale Links im Kopfbereich und Checkout sowie direkt sichtbarer Hinweis unterhalb des Footers.
+- Optionale Links im Kopfbereich und Checkout sowie ein eigener Reiter auf Produktseiten.
 - Eigene Linkbeschriftung; das offizielle Motiv selbst ist nicht bearbeitbar.
 - Einstellungen pro Verkaufskanal in Shopwares normaler Plugin-Konfiguration.
 - Deutsche Standardgrafik; Englisch nur nach ausdrücklicher Auswahl.
@@ -97,7 +97,7 @@ Werte liegen unter `MgdEuLabel.config.*`. Die Verkaufskanal-Vererbung folgt Shop
 | `footerLink` | Footer-Link mit Lightbox | an |
 | `headerLink` | Zusätzlicher Link im Kopfbereich | aus |
 | `checkoutLink` | Zusätzlicher Link im Checkout | aus |
-| `inlineNotice` | Vollständiges Motiv unterhalb des Footers | aus |
+| `productTab` | Reiter im Element Produktbeschreibung/Bewertungen | aus |
 | `language` | `de` (Standard), `en` (explizit), bisheriges `auto` bleibt deutsch | de |
 | `linkText` | Eigene Beschriftung, leer für Übersetzung | leer |
 | `automaticUpdates` | Regelmäßige GitHub-Prüfung und Paketvorbereitung | aus |
@@ -169,3 +169,13 @@ Eigener Code: **GPL-2.0-or-later**, © 2026 Michael Gahn DESIGN, [LICENSE](LICEN
 ## Plugin-Icon – Version 1.1.4
 
 Eigenes lokales Icon in der Shopware-Erweiterungsverwaltung. Die Grafik ist im Release-Paket enthalten; keine externen Bilddienste und keine neuen gespeicherten Daten. Vorhandene Funktionen und Einstellungen bleiben unverändert.
+
+## Anzeige und Sprache ab Version 1.2.0
+
+Die Plugin-Einstellungen sind für eine deutsche Shopware-Administrationssprache vollständig deutsch. Wer Englisch bevorzugt, kann die Sprache seines Administrationsprofils auf Englisch umstellen. Das ist unabhängig von der Einstellung **Grafiksprache**: Das Label und seine Standardtexte erscheinen standardmäßig auf Deutsch; Englisch lässt sich ausdrücklich auswählen.
+
+**Link im Footer-Service-Menü** zeigt einen kompakten Link. Ein Klick öffnet die vollständige Originalgrafik in einem Modal. Schließen funktioniert über den Schließen-Knopf und Escape; anschließend kehrt der Tastaturfokus zum Link zurück. Ohne JavaScript öffnet der Link die Originalgrafik direkt. Die frühere Ausgabe als großes Bild am Seitenende entfällt, auch wenn `inlineNotice` früher eingeschaltet war.
+
+**Gewährleistung als Reiter auf Produktseiten anzeigen** ist standardmäßig aus. Eingeschaltet ergänzt es das native CMS-Element „Produktbeschreibung und Bewertungen“ um einen Reiter mit Grafik und ergänzender Zusammenfassung. Auf Mobilgeräten verwendet es Shopwares vorhandene Offcanvas-Ansicht. Eigene Produktlayouts müssen dieses Element enthalten; Themes, die die betreffenden Blöcke ersetzen, benötigen gegebenenfalls eine Anpassung. Footer-Link und Reiter lassen sich gemeinsam verwenden.
+
+Nach dem Update Assets installieren und Shopware-/Theme- sowie gegebenenfalls CDN-Cache erneuern. Eine Datenbankmigration ist nicht nötig. Die offiziellen SVG-Dateien werden unverändert übernommen. Die neue Platzierung ist keine rechtliche Konformitätszusage.

@@ -1,5 +1,14 @@
 # Änderungen
 
+## 1.2.0 – 2026-10-22
+
+- Deutsche und englische Einstellungstexte explizit zugeordnet.
+- Footer-Link mit Modal als Standard; alte Direktanzeige am Seitenende entfernt.
+- Geschlossene Dialoge gegen allgemeine Theme-Anzeigeregeln geschützt.
+- Optionaler Produktreiter mit nativer mobiler Offcanvas-Ansicht.
+- Render- und Verhaltenstests für Sprache, Schalter und bestehende Produktinhalte ergänzt.
+
+
 ## 1.1.4 – 2026-10-22
 
 - Plugin-Icon lokal eingebunden und im Release-Paket enthalten.

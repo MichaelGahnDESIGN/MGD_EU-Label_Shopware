@@ -1,3 +1,5 @@
+/* Geschlossene Dialoge bleiben auch bei allgemeinen Theme-Regeln unsichtbar. */
+.mgd-eu-label-dialog:not([open]) { display: none !important; }
 /* Alle Regeln bleiben im eigenen Namensraum; die Originalgrafik wird nicht umgestaltet. */
 .mgd-eu-label-dialog { padding: 0; border: 1px solid #777; border-radius: .35rem; width: min(52rem, calc(100% - 2rem)); max-width: calc(100% - 2rem); max-height: calc(100dvh - 2rem); color: #171717; background: #fff; }
 .mgd-eu-label-dialog::backdrop { background: rgb(0 0 0 / 65%); }
@@ -12,3 +14,6 @@
 .mgd-eu-label-inline { margin-block: 1.5rem; max-width: 52rem; }
 .mgd-eu-label-placement { padding-block: .75rem; }
 .mgd-eu-label-close:focus-visible, .mgd-eu-label-dialog-content a:focus-visible, .mgd-eu-label-link:focus-visible, .mgd-eu-label-readable summary:focus-visible { outline: 3px solid #174f91; outline-offset: 3px; }
+
+.mgd-eu-label-product-content { max-width: 52rem; margin-inline: auto; }
+.mgd-eu-label-product-content img { display: block; width: 100%; height: auto; }

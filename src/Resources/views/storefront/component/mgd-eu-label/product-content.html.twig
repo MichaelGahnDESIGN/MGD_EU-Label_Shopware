@@ -1,0 +1,11 @@
+{% sw_extends '@Storefront/storefront/utilities/offcanvas.html.twig' %}
+
+{% block utilities_offcanvas_content %}
+    <div class="mgd-eu-label-product-content tab-pane-container" lang="{{ notice.language }}">
+        <h2>{{ notice.linkText }}</h2>
+        <a href="{{ asset('bundles/mgdeulabel/notices/legal-guarantee-' ~ notice.language ~ '.svg', 'asset') }}" target="_blank" rel="noopener">
+            <img src="{{ asset('bundles/mgdeulabel/notices/legal-guarantee-' ~ notice.language ~ '.svg', 'asset') }}" alt="{{ notice.imageAlt }}" loading="lazy">
+        </a>
+        {% sw_include '@MgdEuLabel/storefront/component/mgd-eu-label/text.html.twig' %}
+    </div>
+{% endblock %}

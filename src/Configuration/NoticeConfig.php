@@ -13,9 +13,11 @@ final class NoticeConfig
         // Der frühere Wert „auto“ bleibt für bestehende Installationen lesbar.
         $language = ($values['language'] ?? null) === 'en' ? 'en' : 'de';
         $result = ['language' => $language];
-        foreach (['enabled' => true, 'footerLink' => true, 'headerLink' => false, 'checkoutLink' => false, 'inlineNotice' => false] as $key => $default) {
+        foreach (['enabled' => true, 'footerLink' => true, 'headerLink' => false, 'checkoutLink' => false, 'productTab' => false] as $key => $default) {
             $result[$key] = filter_var($values[$key] ?? $default, FILTER_VALIDATE_BOOL);
         }
+        // Die frühere Direktanzeige am Seitenende wird durch Link und Produktreiter ersetzt.
+        $result['inlineNotice'] = false;
         $text = is_string($values['linkText'] ?? null) ? trim($values['linkText']) : '';
         $result['linkText'] = $text !== '' ? mb_substr($text, 0, 200) : ($language === 'de' ? 'Gesetzliche Gewährleistung' : 'Legal guarantee');
         $result['closeText'] = $language === 'de' ? 'Schließen' : 'Close';

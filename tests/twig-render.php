@@ -45,3 +45,34 @@ foreach (['frontend.checkout.cart.page', 'frontend.checkout.confirm.page', 'fron
     expectRender(str_contains($html, 'data-mgd-eu-label-open') === str_starts_with($route, 'frontend.checkout.'), 'Checkout-Link für Route falsch: ' . $route);
 }
 fwrite(STDOUT, "PASS Twig-Render: CMS-Assets, Legacy-Scriptpfad, native Inhalte und vier Checkout-Routen\n");
+
+// Native Blockgrenzen nach Shopware 6.7.15.1; die Plugin-Templates selbst werden vollständig gerendert.
+$loader->setTemplate('@Storefront/storefront/element/cms-element-product-description-reviews.html.twig', '<ul>{% block element_product_description_reviews_tabs_navigation_review %}<li>Bewertungen</li>{% endblock %}</ul><div>{% block element_product_description_reviews_tabs_content_review %}Bewertungen-Inhalt{% endblock %}</div>');
+$tabSource = $standardTwig(file_get_contents($root . 'element/cms-element-product-description-reviews.html.twig'));
+$tabSource = str_replace("{% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}", '', $tabSource);
+$loader->setTemplate('plugin-tabs', $tabSource);
+$loader->setTemplate('@Storefront/storefront/utilities/offcanvas.html.twig', '<div class="offcanvas-content">{% block utilities_offcanvas_content %}{% endblock %}</div>');
+foreach (['product-content', 'text', 'dialog'] as $part) {
+    $loader->setTemplate('@MgdEuLabel/storefront/component/mgd-eu-label/' . $part . '.html.twig', $standardTwig(file_get_contents($root . 'component/mgd-eu-label/' . $part . '.html.twig')));
+}
+foreach ([false, true] as $enabled) {
+    foreach ([false, true] as $productTab) {
+        $notice = $normalizer->normalize(['enabled' => $enabled, 'productTab' => $productTab], 'de-DE');
+        $html = $twig->render('plugin-tabs', ['context' => $notice, 'element' => ['id' => 'test-element']]);
+        expectRender(str_contains($html, 'mgd-guarantee-tab-test-element') === ($enabled && $productTab), 'Produktreiter-Schalter falsch');
+        expectRender(str_contains($html, 'legal-guarantee-de.svg') === ($enabled && $productTab), 'Produktgrafik-Schalter falsch');
+        expectRender(str_contains($html, 'Bewertungen-Inhalt'), 'Vorhandene Produktinhalte gingen verloren');
+    }
+}
+$notice = $normalizer->normalize(['language' => 'en', 'productTab' => true, 'linkText' => '<script>bad</script>'], 'de-DE');
+$html = $twig->render('plugin-tabs', ['context' => $notice, 'element' => ['id' => 'test-element']]);
+expectRender(str_contains($html, 'legal-guarantee-en.svg') && !str_contains($html, '<script>'), 'Sprache oder Escaping falsch');
+if (isset($argv[2])) {
+    $notice = $normalizer->normalize([], 'de-DE');
+    $html = '<!doctype html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gewährleistung Test</title><style>body{font:16px system-ui;margin:24px} dialog{display:block}</style><link rel="stylesheet" href="/notice.css"></head><body><footer>';
+    $html .= $twig->render('@MgdEuLabel/storefront/component/mgd-eu-label/link.html.twig', ['notice' => $notice]);
+    $html .= '</footer>' . $twig->render('@MgdEuLabel/storefront/component/mgd-eu-label/dialog.html.twig', ['notice' => $notice]);
+    $html .= '<script src="/notice.js" defer></script></body></html>';
+    file_put_contents($argv[2], $html);
+}
+fwrite(STDOUT, "PASS Twig-Render: Produktreiter, Ausschalten, Elterninhalte, Englisch und Escaping\n");

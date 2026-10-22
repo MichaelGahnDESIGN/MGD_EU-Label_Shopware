@@ -1,17 +1,81 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
   <card>
-    <title>EU-Gewährleistungsinformation</title><title lang="en-GB">EU legal guarantee notice</title>
-    <input-field type="bool"><name>enabled</name><label>Anzeige aktivieren</label><label lang="en-GB">Enable notice</label><defaultValue>true</defaultValue></input-field>
-    <input-field type="bool"><name>footerLink</name><label>Link im Footer-Service-Menü</label><label lang="en-GB">Footer service menu link</label><defaultValue>true</defaultValue></input-field>
-    <input-field type="bool"><name>headerLink</name><label>Zusätzlicher Link unter dem Header</label><label lang="en-GB">Additional link below header</label><defaultValue>false</defaultValue></input-field>
-    <input-field type="bool"><name>checkoutLink</name><label>Zusätzlicher Link im Checkout</label><label lang="en-GB">Additional checkout link</label><defaultValue>false</defaultValue></input-field>
-    <input-field type="bool"><name>inlineNotice</name><label>Offizielle Grafik zusätzlich direkt anzeigen</label><label lang="en-GB">Also show official image inline</label><defaultValue>false</defaultValue><helpText>Footer allein ist kein Konformitätsnachweis. Anzeigeort und rechtliche Anforderungen eigenständig prüfen.</helpText></input-field>
-    <input-field type="single-select"><name>language</name><label>Grafiksprache</label><label lang="en-GB">Image language</label><defaultValue>de</defaultValue><options><option><id>auto</id><name>Deutsch (bisherige Automatik-Einstellung)</name></option><option><id>de</id><name>Deutsch (Standard)</name></option><option><id>en</id><name>English (explizit)</name></option></options><helpText>Deutsch ist Standard, auch in anderssprachigen Verkaufskanälen. Englisch nur nach ausdrücklicher Auswahl.</helpText></input-field>
-    <input-field type="text"><name>linkText</name><label>Linktext (leer = passende Sprache)</label><label lang="en-GB">Link text (empty = localized)</label></input-field>
+    <title lang="de-DE">EU-Gewährleistungsinformation</title>
+    <title lang="en-GB">EU legal guarantee notice</title>
+    <input-field type="bool">
+      <name>enabled</name>
+      <label lang="de-DE">Anzeige aktivieren</label>
+      <label lang="en-GB">Enable notice</label>
+      <defaultValue>true</defaultValue>
+    </input-field>
+    <input-field type="bool">
+      <name>footerLink</name>
+      <label lang="de-DE">Link im Footer-Service-Menü</label>
+      <label lang="en-GB">Footer service menu link</label>
+      <defaultValue>true</defaultValue>
+    </input-field>
+    <input-field type="bool">
+      <name>headerLink</name>
+      <label lang="de-DE">Zusätzlicher Link unter dem Header</label>
+      <label lang="en-GB">Additional link below header</label>
+      <defaultValue>false</defaultValue>
+    </input-field>
+    <input-field type="bool">
+      <name>checkoutLink</name>
+      <label lang="de-DE">Zusätzlicher Link im Checkout</label>
+      <label lang="en-GB">Additional checkout link</label>
+      <defaultValue>false</defaultValue>
+    </input-field>
+    <input-field type="single-select">
+      <name>language</name>
+      <label lang="de-DE">Grafiksprache</label>
+      <label lang="en-GB">Image language</label>
+      <defaultValue>de</defaultValue>
+      <options>
+        <option>
+          <id>auto</id>
+          <name lang="de-DE">Deutsch (bisherige Automatik-Einstellung)</name>
+          <name lang="en-GB">German (legacy automatic setting)</name>
+        </option>
+        <option>
+          <id>de</id>
+          <name lang="de-DE">Deutsch (Standard)</name>
+          <name lang="en-GB">German (default)</name>
+        </option>
+        <option>
+          <id>en</id>
+          <name lang="de-DE">English (explizit)</name>
+          <name lang="en-GB">English</name>
+        </option>
+      </options>
+      <helpText lang="de-DE">Deutsch ist Standard, auch in anderssprachigen Verkaufskanälen. Englisch nur nach ausdrücklicher Auswahl.</helpText>
+      <helpText lang="en-GB">German is the default, including other sales channel languages. Select English explicitly to use the English notice.</helpText>
+    </input-field>
+    <input-field type="text">
+      <name>linkText</name>
+      <label lang="de-DE">Linktext (leer = passende Sprache)</label>
+      <label lang="en-GB">Link text (empty = localized)</label>
+    </input-field>
+    <input-field type="bool">
+      <name>productTab</name>
+      <label lang="de-DE">Gewährleistung als Reiter auf Produktseiten anzeigen</label>
+      <label lang="en-GB">Show guarantee tab on product pages</label>
+      <defaultValue>false</defaultValue>
+      <helpText lang="de-DE">Ergänzt das native Erlebniswelten-Element „Produktbeschreibung und Bewertungen“. Footer-Link und Produktreiter können gemeinsam aktiv sein.</helpText>
+      <helpText lang="en-GB">Adds a tab to the native product description and reviews CMS element. Footer link and product tab can be enabled together.</helpText>
+    </input-field>
   </card>
   <card>
-    <title>GitHub-Updates</title><title lang="en-GB">GitHub updates</title>
-    <input-field type="bool"><name>automaticUpdates</name><label>Stündlich GitHub-Releases prüfen und Update-Dateien vorbereiten</label><label lang="en-GB">Check GitHub releases hourly and prepare update files</label><defaultValue>false</defaultValue><helpText>Standardmäßig aus. Nur global für alle Verkaufskanäle einstellen. Erfordert laufenden Shopware ScheduledTask-/Queue-Worker und Scheduler bzw. Cron. Geprüfte neuere Releases werden mit privater Sicherung vorbereitet; anschließend den eigentlichen Plugin-Updatevorgang in Shopware ausführen. Wegen kurzer Umschaltlücke ein Wartungsfenster verwenden.</helpText><helpText lang="en-GB">Disabled by default. Configure globally for all sales channels. Requires a running Shopware ScheduledTask/queue worker and scheduler or cron. Verified newer releases are prepared with a private backup; then run the actual plugin update in Shopware. Use a maintenance window because the directory switch has a brief gap.</helpText></input-field>
+    <title lang="de-DE">GitHub-Updates</title>
+    <title lang="en-GB">GitHub updates</title>
+    <input-field type="bool">
+      <name>automaticUpdates</name>
+      <label lang="de-DE">Stündlich GitHub-Releases prüfen und Update-Dateien vorbereiten</label>
+      <label lang="en-GB">Check GitHub releases hourly and prepare update files</label>
+      <defaultValue>false</defaultValue>
+      <helpText lang="de-DE">Standardmäßig aus. Nur global für alle Verkaufskanäle einstellen. Erfordert laufenden Shopware ScheduledTask-/Queue-Worker und Scheduler bzw. Cron. Geprüfte neuere Releases werden mit privater Sicherung vorbereitet; anschließend den eigentlichen Plugin-Updatevorgang in Shopware ausführen. Wegen kurzer Umschaltlücke ein Wartungsfenster verwenden.</helpText>
+      <helpText lang="en-GB">Disabled by default. Configure globally for all sales channels. Requires a running Shopware ScheduledTask/queue worker and scheduler or cron. Verified newer releases are prepared with a private backup; then run the actual plugin update in Shopware. Use a maintenance window because the directory switch has a brief gap.</helpText>
+    </input-field>
   </card>
 </config>
