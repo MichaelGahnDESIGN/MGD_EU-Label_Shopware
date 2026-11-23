@@ -36,6 +36,7 @@ jobs:
           composer validate --no-check-publish
           find src scripts tests -name '*.php' -print0 | xargs -0 -n1 php -l
           php tests/run.php
+          php tests/kit-check.php
           php scripts/build-release.php
       - uses: actions/setup-node@v4
         with:

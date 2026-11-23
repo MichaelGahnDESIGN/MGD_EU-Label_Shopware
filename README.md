@@ -180,6 +180,10 @@ Die Plugin-Einstellungen sind für eine deutsche Shopware-Administrationssprache
 
 Nach dem Update Assets installieren und Shopware-/Theme- sowie gegebenenfalls CDN-Cache erneuern. Eine Datenbankmigration ist nicht nötig. Die offiziellen SVG-Dateien werden unverändert übernommen. Die neue Platzierung ist keine rechtliche Konformitätszusage.
 
+## Admin-Seite und Updates (ab 1.3.0)
+
+Im Shopware-Admin gibt es unter **Einstellungen > Erweiterungen > MGD EU Label** eine Seite mit Info, Updates (Knopf „Jetzt aktualisieren“), Weitere Plugins und dem Schalter „Installation melden“. Nach einem Update auf dem Server zuerst `bin/console cache:clear`, dann `bin/console scheduled-task:register`. Der alte GitHub-Updater ist abgemeldet und fliegt in der Endversion raus.
+
 ## Fertiges Upload-Paket ab 1.2.1
 
 `MgdEuLabel.zip` enthält sämtliche fertigen JavaScript-, CSS- und Grafikdateien. In Shopware hochladen und den regulären Installations-/Updatevorgang abschließen; ein eigener Administration- oder Theme-Build ist für dieses Plugin nicht erforderlich. Shopwares normaler Updateablauf veröffentlicht die Assets automatisch. Anschließend die geöffnete Administration bzw. Shopseite neu laden.

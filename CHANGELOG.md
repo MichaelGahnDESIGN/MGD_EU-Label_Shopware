@@ -1,5 +1,14 @@
 # Änderungen
 
+## 1.3.0 – 2026-11-24 (Brückenversion mit Plugin-Baukasten)
+
+- Neue Seite im Admin unter Einstellungen > Erweiterungen > MGD EU Label: Info, Updates mit Knopf „Jetzt aktualisieren“, Weitere Plugins, Installation melden.
+- Produktname für die Update-Datei: `mgd-eu-label-shopware`, Katalog-Kennung `plugin-eu-label-shopware`.
+- Beim Deinstallieren meldet sich das Plugin bei theme.michael-gahn.de ab.
+- Der alte GitHub-Updater (Update-Controller, Stunden-Task) ist nicht mehr angemeldet, die Dateien bleiben bis zur Endversion liegen.
+- Einstellungen und Anzeige im Shop bleiben unverändert.
+- Nach dem Update auf dem Server: `bin/console cache:clear`, danach `bin/console scheduled-task:register`.
+
 ## 1.2.1 – 2026-10-23
 
 - Release-Build verweigert Pakete ohne fertige JavaScript-, CSS- und Grafikdateien.

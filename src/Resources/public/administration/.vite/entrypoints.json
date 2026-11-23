@@ -1,0 +1,23 @@
+{
+  "base": "/bundles/mgdeulabel/administration/",
+  "entryPoints": {
+    "mgd-eu-label": {
+      "css": [],
+      "dynamic": [],
+      "js": [
+        "/bundles/mgdeulabel/administration/js/mgd-eu-label.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

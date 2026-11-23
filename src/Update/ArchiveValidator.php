@@ -13,6 +13,8 @@ final class ArchiveValidator
     {
         if (str_contains($path, '\\') || str_contains($path, "\0") || preg_match('/[\x00-\x1f\x7f]/', $path)
             || str_contains($path, ':') || str_contains($path, '//')) { return false; }
+        // Vite-Manifest für die Admin-Seite vom Baukasten, sonst bleiben versteckte Pfade verboten
+        if ($path === 'MgdEuLabel/src/Resources/public/administration/.vite/entrypoints.json' || $path === 'MgdEuLabel/src/Resources/public/administration/.vite/') { return true; }
         $segments = explode('/', rtrim($path, '/'));
         foreach ($segments as $segment) { if ($segment === '.' || $segment === '..' || $segment === '' || str_starts_with($segment, '.')) { return false; } }
         if (in_array($path, ['MgdEuLabel/composer.json', 'MgdEuLabel/LICENSE', 'MgdEuLabel/LICENSE.md'], true)) { return true; }
