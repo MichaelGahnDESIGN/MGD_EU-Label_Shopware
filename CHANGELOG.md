@@ -1,5 +1,9 @@
 # Änderungen
 
+## [2.1.1] - 2026-11-25
+
+- Aktueller Baukasten, einheitliche Version.
+
 ## 1.3.0 – 2026-11-24 (Brückenversion mit Plugin-Baukasten)
 
 - Neue Seite im Admin unter Einstellungen > Erweiterungen > MGD EU Label: Info, Updates mit Knopf „Jetzt aktualisieren“, Weitere Plugins, Installation melden.
