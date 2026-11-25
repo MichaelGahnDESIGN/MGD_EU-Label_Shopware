@@ -28,7 +28,7 @@ $check($adminJs === $read('src/Kit/Platform/Shopware/administration/mgd-kit.js')
 $entry = json_decode($read('src/Resources/public/administration/.vite/entrypoints.json'), true);
 $check(($entry['entryPoints']['mgd-eu-label']['js'][0] ?? '') === '/bundles/mgdeulabel/administration/js/mgd-eu-label.js', 'Vite-Manifest zeigt auf die Admin-Datei');
 $manifest = json_decode($read('composer.json'), true);
-$check(($manifest['version'] ?? '') === '1.3.0', 'Version 1.3.0');
+$check(($manifest['version'] ?? '') === '2.1.1', 'Version 2.1.1');
 $placeholders = 0;
 foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($root . '/src/Kit', FilesystemIterator::SKIP_DOTS)) as $f) {
     $placeholders += str_contains((string) file_get_contents((string) $f), '{{KIT_') ? 1 : 0;
