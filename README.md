@@ -166,11 +166,11 @@ Eigener Code: **GPL-2.0-or-later**, © 2026 Michael Gahn DESIGN, [LICENSE](LICEN
 
 [Michael-Gahn.de](https://Michael-Gahn.de) · [GitHub](https://github.com/MichaelGahnDESIGN) · [Issues](https://github.com/MichaelGahnDESIGN/MGD_EU-Label_Shopware/issues)
 
-## Plugin-Icon – Version 1.1.4
+## Plugin-Icon – Version 2.2.0
 
 Eigenes lokales Icon in der Shopware-Erweiterungsverwaltung. Die Grafik ist im Release-Paket enthalten; keine externen Bilddienste und keine neuen gespeicherten Daten. Vorhandene Funktionen und Einstellungen bleiben unverändert.
 
-## Anzeige und Sprache ab Version 1.2.0
+## Anzeige und Sprache ab Version 2.2.0
 
 Die Plugin-Einstellungen sind für eine deutsche Shopware-Administrationssprache vollständig deutsch. Wer Englisch bevorzugt, kann die Sprache seines Administrationsprofils auf Englisch umstellen. Das ist unabhängig von der Einstellung **Grafiksprache**: Das Label und seine Standardtexte erscheinen standardmäßig auf Deutsch; Englisch lässt sich ausdrücklich auswählen.
 
